@@ -42,7 +42,7 @@ function kbcl_clients_template_redirect( $template ) {
         // Use the Plugin Files
         else {
 
-            $template = kbcl_PATH . 'templates/archive-kbcl_clients.php';
+            $template = KBCL_PATH . 'templates/archive-kbcl_clients.php';
 
         }
 
@@ -65,7 +65,7 @@ function kbcl_clients_template_redirect( $template ) {
         // Use the Plugin Files
         else {
                 
-            $template = kbcl_PATH . 'templates/single-kbcl_clients.php';
+            $template = KBCL_PATH . 'templates/single-kbcl_clients.php';
                 
        }
 
