@@ -9,7 +9,7 @@ get_header();
 
 <div class="kcontainer" style="overflow: hidden;">
 
-    <div class="ktestimonials">
+    <div class="kclients">
         
             <?php if ( kbcl_get_page_title() ) { ?>
                 <h2 class="page-title">
@@ -23,66 +23,39 @@ get_header();
 
             <?php if ( have_posts() ) : ?>
 
-                <div class="ktestimonials">
+                <div class="kclients">
                     
-                    <ul class="small-kebo-grid-1 medium-kebo-grid-2 large-kebo-grid-3">
+                    <ul class="small-kebo-grid-4 medium-kebo-grid-6 large-kebo-grid-8">
 
-                        <?php while ( have_posts()) : the_post(); ?>
+                        <?php while ( have_posts() ) : the_post(); ?>
                         
                             <li>
 
-                                <div id="post-<?php the_ID(); ?>" <?php post_class('ktestimonial'); ?>>
-                                
-                                    <div itemscope itemtype="http://schema.org/Review">
+                                <div id="post-<?php the_ID(); ?>" <?php post_class( 'kclient' ); ?>>
 
-                                        <div class="kheader">
+                                    <div class="klogo" title="<?php the_title(); ?>">
+                                        <?php
+                                        if ( has_post_thumbnail() ) {
                                             
-                                            <div itemprop="itemReviewed" itemscope itemtype="http://schema.org/WebPage">
-                                                <meta itemprop="url" content="<?php echo get_option('siteurl'); ?>">
-                                            </div>
+                                            the_post_thumbnail( 'thumbnail' );
                                             
-                                            <span itemprop="name"><strong><?php the_title(); ?></strong></span>
+                                        } else {
                                             
-                                        </div>
-
-                                        <div class="kcontent" itemprop="reviewBody">
-                                            <?php if ( has_post_thumbnail() ) { the_post_thumbnail( 'thumbnail' ); } ?>
-                                            <?php the_content(); ?>
-                                        </div>
-
-                                        <div class="kfooter">
+                                            the_title();
                                             
-                                            <div class="krating">
-                                            <?php if ( kbcl_get_review_rating() ) {
-                                                echo kbcl_get_review_rating_stars();
-                                            } ?>
-                                            </div>
-                                            
-                                            <div class="kauthor" title="<?php echo kbcl_get_review_name() . ' - ' . kbcl_get_review_url(); ?>">
-                                                <span itemprop="author" itemscope itemtype="http://schema.org/Person">
-                                                    <a href="<?php echo kbcl_get_review_url(); ?>" target="_blank"><span itemprop="name"><?php echo kbcl_get_review_name(); ?></span></a>
-                                                </span>
-                                            </div>
-                                            
-                                        </div>
-
-                                        <div itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
-                                            <meta itemprop="worstRating" content="1" />
-                                            <meta itemprop="ratingValue" content="<?php echo kbcl_get_review_rating(); ?>" />
-                                            <meta itemprop="bestRating" content="5">
-                                        </div>
-
+                                        }
+                                        ?>
                                     </div>
-                                    
-                                </div>
 
-                            </li><!-- #post-<?php the_ID(); ?> -->
+                                </div><!-- #post-<?php the_ID(); ?> -->
+
+                            </li>
 
                         <?php endwhile; ?>
                         
                     </ul>
                         
-                </div><!-- .ktestimonials-container -->
+                </div><!-- .kclients -->
                 
                 <?php kbcl_pagination_nav(); ?>
 
@@ -90,11 +63,11 @@ get_header();
                         
                 <?php
                 global $wp_post_types;
-                $cpt = $wp_post_types['kbcl_testimonials'];
+                $cpt = $wp_post_types['kbcl_clients'];
                 ?>
                 <?php if ( current_user_can( 'publish_posts' ) ) : ?>
 
-                    <p><?php printf( __('Ready to create your first %2$s? <a href="%1$s">Get started here</a>.', 'kbcl'), admin_url( 'post-new.php?post_type=kbcl_testimonials' ), $cpt->labels->singular_name ); ?></p>
+                    <p><?php printf( __('Ready to create your first %2$s? <a href="%1$s">Get started here</a>.', 'kbcl'), admin_url( 'post-new.php?post_type=kbcl_clients' ), $cpt->labels->singular_name ); ?></p>
 
                 <?php else : ?>
 
