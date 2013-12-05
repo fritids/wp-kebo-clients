@@ -139,6 +139,7 @@ function kbcl_get_plugin_options() {
     $saved = (array) get_option( 'kbcl_plugin_options' );
     
     $defaults = array(
+        
         // Section - Clients - General
         'clients_general_visual_style' => 'default',
         
@@ -147,6 +148,7 @@ function kbcl_get_plugin_options() {
         'clients_archive_page_slug' => __('clients', 'kbcl'),
         'clients_archive_posts_per_page' => 10,
         'clients_archive_page_content_before' => null
+        
     );
 
     $defaults = apply_filters( 'kbcl_get_plugin_options', $defaults );
