@@ -14,21 +14,22 @@ if ( ! defined( 'KBCL_VERSION' ) ) {
  */
 function kbcl_flush_rewrite_rules() {
     
-    global $pagenow, $wp_rewrite;
+    if ( function_exists( 'flush_rewrite_rules' ) ) {
+        
+        flush_rewrite_rules();
+        
+    } else {
+        
+        global $pagenow, $wp_rewrite;
 
-    if ( 'options-general.php' != $pagenow ) {
-        return;
-    }
-    
-    /*
-     * If the plugin settings have been updated flush rewrite rules
-     */
-    if ( isset( $_GET['page'] ) && ( 'kbcl-testimonials' == $_GET['page'] ) && isset( $_GET['settings-updated'] ) ) {
         $wp_rewrite->flush_rules();
+    
     }
     
 }
 add_filter( 'admin_init', 'kbcl_flush_rewrite_rules' );
+register_activation_hook( __FILE__, 'kbcl_flush_rewrite_rules' );
+register_deactivation_hook( __FILE__, 'kbcl_flush_rewrite_rules' );
 
 /*
  * Helper Function - Returns Page Title
@@ -37,22 +38,35 @@ function kbcl_get_page_title() {
     
     $options = kbcl_get_plugin_options();
     
-    $title = $options['testimonials_archive_page_title'];
+    $title = $options['clients_archive_page_title'];
     
     return esc_html( $title );
     
 }
 
 /*
+ * Helper Function - Returns Page Content Before
+ */
+function kbcl_get_page_content_before() {
+    
+    $options = kbcl_get_plugin_options();
+    
+    $content = $options['clients_archive_page_content_before'];
+    
+    return wp_filter_post_kses( $content );
+    
+}
+
+/*
  * Helper Function - Returns Reviewer Name
  */
-function kbcl_get_review_name() {
+function kbcl_get_client_name() {
     
     global $post;
     
-    $kbcl_custom_meta = get_post_meta( $post->ID, 'kbcl_testimonials_post_meta', true );
+    $kbcl_custom_meta = get_post_meta( $post->ID, 'kbcl_clients_post_meta', true );
     
-    $name = ( isset( $kbcl_custom_meta['reviewer_name'] ) ) ? $kbcl_custom_meta['reviewer_name'] : '' ;
+    $name = ( isset( $kbcl_custom_meta['client_name'] ) ) ? $kbcl_custom_meta['client_name'] : '' ;
     
     return esc_html( $name );
     

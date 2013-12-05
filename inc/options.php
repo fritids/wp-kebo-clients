@@ -286,6 +286,8 @@ function kbcl_options_render_textarea( $args ) {
  */
 function kbcl_plugin_options_validate( $input ) {
     
+    $options = kbcl_get_plugin_options();
+    
     $output = array();
     
     // General Section
@@ -323,7 +325,8 @@ function kbcl_plugin_options_validate( $input ) {
 	$output['clients_archive_page_content_before'] = wp_filter_post_kses( $input['clients_archive_page_content_before'] );
     }
     
-    $options = kbcl_get_plugin_options();
+    // Flush Rules to ensure slug is correct
+    kbcl_flush_rewrite_rules();
     
     // Combine Inputs with currently Saved data, for multiple option page compability
     $options = wp_parse_args( $input, $options );
