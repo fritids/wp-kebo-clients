@@ -3,7 +3,7 @@
  * Shortcode to display the Testimonials
  */
 
-if ( ! defined( 'KBTE_VERSION' ) ) {
+if ( ! defined( 'kbcl_VERSION' ) ) {
     header( 'HTTP/1.0 403 Forbidden' );
     die;
 }
@@ -11,7 +11,7 @@ if ( ! defined( 'KBTE_VERSION' ) ) {
 /*
  * Register Shortcode to output Testimonials
  */
-function kbte_testimonials_shortcode( $atts ) {
+function kbcl_testimonials_shortcode( $atts ) {
     
     /*
      * Prepare Args
@@ -26,4 +26,4 @@ function kbte_testimonials_shortcode( $atts ) {
     return $output;
     
 }
-add_shortcode( 'kebo_testimonials', 'kbte_testimonials_shortcode' );
+add_shortcode( 'kebo_testimonials', 'kbcl_testimonials_shortcode' );

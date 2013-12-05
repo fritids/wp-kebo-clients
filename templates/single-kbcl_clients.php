@@ -12,7 +12,7 @@ get_header();
     <div class="ktestimonials">
 
             <header class="page-header">
-                <h1 class="page-title"><?php __('Testimonials', 'kbte'); ?></h1>
+                <h1 class="page-title"><?php __('Testimonials', 'kbcl'); ?></h1>
             </header><!-- .page-header -->
 
             <?php if ( have_posts() ) : ?>
@@ -46,21 +46,21 @@ get_header();
                         
                 </div><!-- .ktestimonials-container -->
                         
-                <?php kbte_pagination_nav(); ?>
+                <?php kbcl_pagination_nav(); ?>
 
             <?php else : ?>
                         
                 <?php
                 global $wp_post_types;
-                $cpt = $wp_post_types['kbte_testimonials'];
+                $cpt = $wp_post_types['kbcl_testimonials'];
                 ?>
                 <?php if ( current_user_can( 'publish_posts' ) ) : ?>
 
-                    <p><?php printf( __('Ready to create your first %2$s? <a href="%1$s">Get started here</a>.', 'kbte'), admin_url( 'post-new.php?post_type=kbte_testimonials' ), $cpt->labels->singular_name ); ?></p>
+                    <p><?php printf( __('Ready to create your first %2$s? <a href="%1$s">Get started here</a>.', 'kbcl'), admin_url( 'post-new.php?post_type=kbcl_testimonials' ), $cpt->labels->singular_name ); ?></p>
 
                 <?php else : ?>
 
-                    <p><?php printf( __('Sorry, there are currently no %1$s to display.', 'kbte'), $cpt->labels->name ); ?></p>
+                    <p><?php printf( __('Sorry, there are currently no %1$s to display.', 'kbcl'), $cpt->labels->name ); ?></p>
 
                 <?php endif; ?>
 

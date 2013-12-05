@@ -3,7 +3,7 @@
  * Registers the Testimonials Custom Post Type
  */
 
-if ( ! defined( 'KBTE_VERSION' ) ) {
+if ( ! defined( 'kbcl_VERSION' ) ) {
     header( 'HTTP/1.0 403 Forbidden' );
     die;
 }
@@ -11,30 +11,30 @@ if ( ! defined( 'KBTE_VERSION' ) ) {
 /*
  * Register the Testimonials CPT (Custom Post Type)
  */
-function kbte_create_testimonials_cpt() {
+function kbcl_create_testimonials_cpt() {
     
-    $options = kbte_get_plugin_options();
+    $options = kbcl_get_plugin_options();
     
     /*
      * Set the Labels to be used for the CPT
      */
     $labels = array(
-        'name' => __('Testimonials', 'kbte'),
-        'menu_name' => __('Testimonials', 'kbte'),
-        'singular_name' => __('Testimonial', 'kbte'),
-        'all_items' => __('All Testimonials', 'kbte'),
-        'add_new' => _x('Add New', 'kbte'),
-        'add_new_item' => __('Add New Testimonial', 'kbte'),
-        'edit' => __('Edit', 'kbte'),
-        'edit_item' => __('Edit Testimonial', 'kbte'),
-        'new_item' => __('New Testimonial', 'kbte'),
-        'view' => __('View', 'kbte'),
-        'view_item' => __('View Testimonial', 'kbte'),
-        'search_items' => __('Search Testimonials', 'kbte'),
-        'not_found' => __('No Testimonials Found', 'kbte'),
-        'not_found_in_trash' => __('No Testimonials Found in Trash', 'kbte'),
-        'parent' => __('Parent Testimonial', 'kbte'),
-        'parent_item_colon' => __('Testimonial:', 'kbte')
+        'name' => __('Testimonials', 'kbcl'),
+        'menu_name' => __('Testimonials', 'kbcl'),
+        'singular_name' => __('Testimonial', 'kbcl'),
+        'all_items' => __('All Testimonials', 'kbcl'),
+        'add_new' => _x('Add New', 'kbcl'),
+        'add_new_item' => __('Add New Testimonial', 'kbcl'),
+        'edit' => __('Edit', 'kbcl'),
+        'edit_item' => __('Edit Testimonial', 'kbcl'),
+        'new_item' => __('New Testimonial', 'kbcl'),
+        'view' => __('View', 'kbcl'),
+        'view_item' => __('View Testimonial', 'kbcl'),
+        'search_items' => __('Search Testimonials', 'kbcl'),
+        'not_found' => __('No Testimonials Found', 'kbcl'),
+        'not_found_in_trash' => __('No Testimonials Found in Trash', 'kbcl'),
+        'parent' => __('Parent Testimonial', 'kbcl'),
+        'parent_item_colon' => __('Testimonial:', 'kbcl')
     );
     
     /*
@@ -42,7 +42,7 @@ function kbte_create_testimonials_cpt() {
      */
     $args = array(
         'labels' => $labels,
-        'description' => __('Testimonials', 'kbte'),
+        'description' => __('Testimonials', 'kbcl'),
         'public' => true,
         'exclude_from_search' => true,
         'publicly_queryable' => true,
@@ -68,7 +68,7 @@ function kbte_create_testimonials_cpt() {
     );
 
     // Register the CPT
-    register_post_type( 'kbte_testimonials', $args );
+    register_post_type( 'kbcl_testimonials', $args );
     
 }
-add_action( 'init', 'kbte_create_testimonials_cpt' );
+add_action( 'init', 'kbcl_create_testimonials_cpt' );

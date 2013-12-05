@@ -3,7 +3,7 @@
  * Options API
  */
 
-if ( ! defined( 'KBTE_VERSION' ) ) {
+if ( ! defined( 'kbcl_VERSION' ) ) {
     header( 'HTTP/1.0 403 Forbidden' );
     die;
 }
@@ -11,25 +11,25 @@ if ( ! defined( 'KBTE_VERSION' ) ) {
 /**
  * Register the form setting for our kebo_options array.
  */
-function kbte_plugin_options_init() {
+function kbcl_plugin_options_init() {
     
     // Get Options
-    $options = kbte_get_plugin_options();
+    $options = kbcl_get_plugin_options();
     
     register_setting(
-            'kbte_options', // Options group
-            'kbte_plugin_options', // Database option
-            'kbte_plugin_options_validate' // The sanitization callback,
+            'kbcl_options', // Options group
+            'kbcl_plugin_options', // Database option
+            'kbcl_plugin_options_validate' // The sanitization callback,
     );
 
     /**
      * Section - General
      */
     add_settings_section(
-            'kbte_testimonials_general', // Unique identifier for the settings section
-            __('General', 'kbte'), // Section title
+            'kbcl_testimonials_general', // Unique identifier for the settings section
+            __('General', 'kbcl'), // Section title
             '__return_false', // Section callback (we don't want anything)
-            'kbte-testimonials' // Menu slug
+            'kbcl-testimonials' // Menu slug
     );
     
     /**
@@ -37,13 +37,13 @@ function kbte_plugin_options_init() {
      */
     add_settings_field(
             'testimonials_general_visual_style', // Unique identifier for the field for this section
-            __('Visual Style', 'kbte'), // Setting field label
-            'kbte_options_render_visual_style_dropdown', // Function that renders the settings field
-            'kbte-testimonials', // Menu slug
-            'kbte_testimonials_general', // Settings section.
+            __('Visual Style', 'kbcl'), // Setting field label
+            'kbcl_options_render_visual_style_dropdown', // Function that renders the settings field
+            'kbcl-testimonials', // Menu slug
+            'kbcl_testimonials_general', // Settings section.
             array( // Args to pass to render function
                 'name' => 'testimonials_general_visual_style',
-                'help_text' => __('Set to none to prevent the default stylesheet being enqueued.', 'kbte')
+                'help_text' => __('Set to none to prevent the default stylesheet being enqueued.', 'kbcl')
             ) 
     );
     
@@ -51,10 +51,10 @@ function kbte_plugin_options_init() {
      * Section - Archive Options
      */
     add_settings_section(
-            'kbte_testimonials_archive', // Unique identifier for the settings section
-            __('Archive Page', 'kbte'), // Section title
+            'kbcl_testimonials_archive', // Unique identifier for the settings section
+            __('Archive Page', 'kbcl'), // Section title
             '__return_false', // Section callback (we don't want anything)
-            'kbte-testimonials' // Menu slug
+            'kbcl-testimonials' // Menu slug
     );
     
     /**
@@ -62,13 +62,13 @@ function kbte_plugin_options_init() {
      */
     add_settings_field(
             'testimonials_archive_page_title', // Unique identifier for the field for this section
-            __('Page Title', 'kbte'), // Setting field label
-            'kbte_options_render_text_input', // Function that renders the settings field
-            'kbte-testimonials', // Menu slug
-            'kbte_testimonials_archive', // Settings section.
+            __('Page Title', 'kbcl'), // Setting field label
+            'kbcl_options_render_text_input', // Function that renders the settings field
+            'kbcl-testimonials', // Menu slug
+            'kbcl_testimonials_archive', // Settings section.
             array( // Args to pass to render function
                 'name' => 'testimonials_archive_page_title',
-                'help_text' => __('Title of Testimonials page.', 'kbte')
+                'help_text' => __('Title of Testimonials page.', 'kbcl')
             )
     );
     
@@ -77,13 +77,13 @@ function kbte_plugin_options_init() {
      */
     add_settings_field(
             'testimonials_archive_page_slug', // Unique identifier for the field for this section
-            __('Page Slug', 'kbte'), // Setting field label
-            'kbte_options_render_text_input', // Function that renders the settings field
-            'kbte-testimonials', // Menu slug
-            'kbte_testimonials_archive', // Settings section.
+            __('Page Slug', 'kbcl'), // Setting field label
+            'kbcl_options_render_text_input', // Function that renders the settings field
+            'kbcl-testimonials', // Menu slug
+            'kbcl_testimonials_archive', // Settings section.
             array( // Args to pass to render function
                 'name' => 'testimonials_archive_page_slug',
-                'help_text' => __('Slug of Testimonials page.', 'kbte')
+                'help_text' => __('Slug of Testimonials page.', 'kbcl')
             )
     );
     
@@ -92,14 +92,14 @@ function kbte_plugin_options_init() {
      */
     add_settings_field(
             'testimonials_archive_posts_per_page', // Unique identifier for the field for this section
-            __('Testimonials Per Page', 'kbte'), // Setting field label
-            'kbte_options_render_text_input', // Function that renders the settings field
-            'kbte-testimonials', // Menu slug
-            'kbte_testimonials_archive', // Settings section.
+            __('Testimonials Per Page', 'kbcl'), // Setting field label
+            'kbcl_options_render_text_input', // Function that renders the settings field
+            'kbcl-testimonials', // Menu slug
+            'kbcl_testimonials_archive', // Settings section.
             array( // Args to pass to render function
                 'name' => 'testimonials_archive_posts_per_page',
-                'label_text' => __('Must be between 1-50.', 'kbte'),
-                'help_text' => __('Number of Testimonials to show per page. Set to -1 to display all on a single page.', 'kbte')
+                'label_text' => __('Must be between 1-50.', 'kbcl'),
+                'help_text' => __('Number of Testimonials to show per page. Set to -1 to display all on a single page.', 'kbcl')
             )
     );
     
@@ -108,46 +108,46 @@ function kbte_plugin_options_init() {
      */
     add_settings_field(
             'testimonials_archive_page_content_before', // Unique identifier for the field for this section
-            __('Content Before Testimonials', 'kbte'), // Setting field label
-            'kbte_options_render_textarea', // Function that renders the settings field
-            'kbte-testimonials', // Menu slug
-            'kbte_testimonials_archive', // Settings section.
+            __('Content Before Testimonials', 'kbcl'), // Setting field label
+            'kbcl_options_render_textarea', // Function that renders the settings field
+            'kbcl-testimonials', // Menu slug
+            'kbcl_testimonials_archive', // Settings section.
             array( // Args to pass to render function
                 'name' => 'testimonials_archive_page_content_before',
-                'help_text' => __('Content to display before Testimonials', 'kbte')
+                'help_text' => __('Content to display before Testimonials', 'kbcl')
             )
     );
 
 }
-add_action( 'admin_init', 'kbte_plugin_options_init' );
+add_action( 'admin_init', 'kbcl_plugin_options_init' );
 
 /**
- * Change the capability required to save the 'kbte_options' options group.
+ * Change the capability required to save the 'kbcl_options' options group.
  */
-function kbte_plugin_option_capability( $capability ) {
+function kbcl_plugin_option_capability( $capability ) {
     
     return 'manage_options';
     
 }
-add_filter( 'option_page_capability_kbte_options', 'kbte_plugin_option_capability' );
+add_filter( 'option_page_capability_kbcl_options', 'kbcl_plugin_option_capability' );
 
 /**
  * Returns the options array for kebo.
  */
-function kbte_get_plugin_options() {
+function kbcl_get_plugin_options() {
     
-    $saved = (array) get_option( 'kbte_plugin_options' );
+    $saved = (array) get_option( 'kbcl_plugin_options' );
     
     $defaults = array(
         // Section - Testimonials - General
         'testimonials_general_visual_style' => 'default',
-        'testimonials_archive_page_title' => __('Testimonials', 'kbte'),
-        'testimonials_archive_page_slug' => __('testimonials', 'kbte'),
+        'testimonials_archive_page_title' => __('Testimonials', 'kbcl'),
+        'testimonials_archive_page_slug' => __('testimonials', 'kbcl'),
         'testimonials_archive_posts_per_page' => 10,
         'testimonials_archive_page_content_before' => null
     );
 
-    $defaults = apply_filters( 'kbte_get_plugin_options', $defaults );
+    $defaults = apply_filters( 'kbcl_get_plugin_options', $defaults );
 
     $options = wp_parse_args( $saved, $defaults );
     $options = array_intersect_key( $options, $defaults );
@@ -159,9 +159,9 @@ function kbte_get_plugin_options() {
 /**
  * Renders the text input setting field.
  */
-function kbte_options_render_text_input( $args ) {
+function kbcl_options_render_text_input( $args ) {
     
-    $options = kbte_get_plugin_options();
+    $options = kbcl_get_plugin_options();
     
     $name = esc_attr( $args['name'] );
     
@@ -171,7 +171,7 @@ function kbte_options_render_text_input( $args ) {
         
     ?>
     <label class="description" for="<?php echo $name; ?>">
-        <input type="text" name="kbte_plugin_options[<?php echo $name; ?>]" id="<?php echo $name; ?>" value="<?php echo esc_attr( $options[ $name ] ); ?>" />
+        <input type="text" name="kbcl_plugin_options[<?php echo $name; ?>]" id="<?php echo $name; ?>" value="<?php echo esc_attr( $options[ $name ] ); ?>" />
         <?php echo $label_text; ?>
     </label>
     <?php if ( $help_text ) { ?>
@@ -184,7 +184,7 @@ function kbte_options_render_text_input( $args ) {
 /**
  * Returns an array of radio options for Yes/No.
  */
-function kbte_options_radio_buttons_boolean() {
+function kbcl_options_radio_buttons_boolean() {
     
     $radio_buttons = array(
         'yes' => array(
@@ -197,43 +197,43 @@ function kbte_options_radio_buttons_boolean() {
         ),
     );
 
-    return apply_filters( 'kbte_options_radio_buttons_boolean', $radio_buttons );
+    return apply_filters( 'kbcl_options_radio_buttons_boolean', $radio_buttons );
     
 }
 
 /**
  * Returns an array of select inputs for the Visual Style dropdown.
  */
-function kbte_options_visual_style_dropdown() {
+function kbcl_options_visual_style_dropdown() {
     
     $dropdown = array(
         'default' => array(
             'value' => 'default',
-            'label' => __('Default', 'kbte')
+            'label' => __('Default', 'kbcl')
         ),
         'none' => array(
             'value' => 'none',
-            'label' => __('None', 'kbte')
+            'label' => __('None', 'kbcl')
         ),
     );
 
-    return apply_filters( 'kbte_options_visual_style_dropdown', $dropdown );
+    return apply_filters( 'kbcl_options_visual_style_dropdown', $dropdown );
     
 }
 
 /**
  * Renders the Theme dropdown.
  */
-function kbte_options_render_visual_style_dropdown( $args ) {
+function kbcl_options_render_visual_style_dropdown( $args ) {
     
-    $options = kbte_get_plugin_options();
+    $options = kbcl_get_plugin_options();
     
     $name = esc_attr( $args['name'] );
     
     ?>
-    <select id="<?php echo $name; ?>[<?php echo $dropdown['value']; ?>]" name="kbte_plugin_options[<?php echo $name; ?>]">
+    <select id="<?php echo $name; ?>[<?php echo $dropdown['value']; ?>]" name="kbcl_plugin_options[<?php echo $name; ?>]">
     <?php
-    foreach ( kbte_options_visual_style_dropdown() as $dropdown ) {
+    foreach ( kbcl_options_visual_style_dropdown() as $dropdown ) {
         
         ?>
         <option value="<?php echo esc_attr( $dropdown['value'] ); ?>" <?php selected( $dropdown['value'], $options[ $name ] ); ?>>
@@ -251,9 +251,9 @@ function kbte_options_render_visual_style_dropdown( $args ) {
 /**
  * Renders a textarea field.
  */
-function kbte_options_render_textarea( $args ) {
+function kbcl_options_render_textarea( $args ) {
     
-    $options = kbte_get_plugin_options();
+    $options = kbcl_get_plugin_options();
     
     $name = esc_attr( $args['name'] );
     
@@ -262,13 +262,13 @@ function kbte_options_render_textarea( $args ) {
     $args = array(
         'wpautop' => true, // Use of wpautop for this data.
         'media_buttons' => false, // Show/Hide the Media Button
-        'textarea_name' => 'kbte_plugin_options[' . $name . ']', // name attribute of the textarea
+        'textarea_name' => 'kbcl_plugin_options[' . $name . ']', // name attribute of the textarea
         'tabindex' => 'none', // Tab Index for this Element 
     );
     ?>
         
     <div style="max-width: 800px;">
-        <?php wp_editor( esc_textarea( $options[ $name ] ), 'kbte_plugin_options[' . $name . ']', $args ); ?>
+        <?php wp_editor( esc_textarea( $options[ $name ] ), 'kbcl_plugin_options[' . $name . ']', $args ); ?>
     </div>
         
     <?php if ( $help_text ) { ?>
@@ -282,12 +282,12 @@ function kbte_options_render_textarea( $args ) {
 /**
  * Sanitize and validate form input. Accepts an array, return a sanitized array.
  */
-function kbte_plugin_options_validate( $input ) {
+function kbcl_plugin_options_validate( $input ) {
     
     $output = array();
     
     // General Section
-    if ( isset( $input['testimonials_general_visual_style'] ) && array_key_exists( $input['testimonials_general_visual_style'], kbte_options_visual_style_dropdown() ) ) {
+    if ( isset( $input['testimonials_general_visual_style'] ) && array_key_exists( $input['testimonials_general_visual_style'], kbcl_options_visual_style_dropdown() ) ) {
         $output['testimonials_general_visual_style'] = $input['testimonials_general_visual_style'];
     }
     
@@ -321,11 +321,11 @@ function kbte_plugin_options_validate( $input ) {
 	$output['testimonials_archive_page_content_before'] = wp_filter_post_kses( $input['testimonials_archive_page_content_before'] );
     }
     
-    $options = kbte_get_plugin_options();
+    $options = kbcl_get_plugin_options();
     
     // Combine Inputs with currently Saved data, for multiple option page compability
     $options = wp_parse_args( $input, $options );
     
-    return apply_filters( 'kbte_plugin_options_validate', $options, $output );
+    return apply_filters( 'kbcl_plugin_options_validate', $options, $output );
     
 }

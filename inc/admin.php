@@ -3,7 +3,7 @@
  * Customisations to the Admin Testimonials Listing.
  */
 
-if ( ! defined( 'KBTE_VERSION' ) ) {
+if ( ! defined( 'kbcl_VERSION' ) ) {
     header( 'HTTP/1.0 403 Forbidden' );
     die;
 }
@@ -11,27 +11,27 @@ if ( ! defined( 'KBTE_VERSION' ) ) {
 /**
  * Edit the Admin List Titles for Testimonials.
  */
-function kbte_testimonials_admin_columns( $columns ) {
+function kbcl_testimonials_admin_columns( $columns ) {
     
     // Remove All Columns
     unset( $columns );
     
     // Add Required Columns
     $columns['cb'] = '<input type="checkbox" />';
-    $columns['details'] = __( 'Details', 'kbte' );
-    $columns['title'] = __( 'Title', 'kbte' );
-    $columns['rating'] = __( 'Rating', 'kbte' );
-    $columns['date'] = __( 'Date', 'kbte' );
+    $columns['details'] = __( 'Details', 'kbcl' );
+    $columns['title'] = __( 'Title', 'kbcl' );
+    $columns['rating'] = __( 'Rating', 'kbcl' );
+    $columns['date'] = __( 'Date', 'kbcl' );
     
     return $columns;
     
 }	
-add_filter( 'manage_edit-kbte_testimonials_columns', 'kbte_testimonials_admin_columns' );
+add_filter( 'manage_edit-kbcl_testimonials_columns', 'kbcl_testimonials_admin_columns' );
 
 /*
  * Adds which columns should be sortable.
  */
-function kbte_testimonials_sortable_admin_columns( $columns ) {
+function kbcl_testimonials_sortable_admin_columns( $columns ) {
     
     // Add Required Columns
     $columns['title'] = 'title';
@@ -40,25 +40,25 @@ function kbte_testimonials_sortable_admin_columns( $columns ) {
     return $columns;
     
 }	
-add_filter( 'manage_edit-kbte_testimonials_sortable_columns', 'kbte_testimonials_sortable_admin_columns' );
+add_filter( 'manage_edit-kbcl_testimonials_sortable_columns', 'kbcl_testimonials_sortable_admin_columns' );
 
 /*
  * Adds data to the custom admin columns.
  */
-function kbte_testimonials_admin_column_values( $column, $post_id ) {
+function kbcl_testimonials_admin_column_values( $column, $post_id ) {
     
     global $post;
     
-    $kbte_custom_meta = get_post_meta( $post->ID, 'kbte_testimonials_post_meta', true );
+    $kbcl_custom_meta = get_post_meta( $post->ID, 'kbcl_testimonials_post_meta', true );
     
     switch ( $column ) {
 
         case 'details' :
             
             // Prepare Meta
-            $name = kbte_get_review_name();
-            $email = kbte_get_review_email();
-            $url = kbte_get_review_url();
+            $name = kbcl_get_review_name();
+            $email = kbcl_get_review_email();
+            $url = kbcl_get_review_url();
             
             // Output Name
             if ( ! empty ( $name ) && ! empty ( $url ) ) {
@@ -88,13 +88,13 @@ function kbte_testimonials_admin_column_values( $column, $post_id ) {
     
         case 'rating' :
             
-            if ( kbte_get_review_rating() ) {
+            if ( kbcl_get_review_rating() ) {
                 
-                echo kbte_get_review_rating_stars();
+                echo kbcl_get_review_rating_stars();
                 
             } else {
                 
-                echo __('Not Rated', 'kbte');
+                echo __('Not Rated', 'kbcl');
                 
             }
             
@@ -103,12 +103,12 @@ function kbte_testimonials_admin_column_values( $column, $post_id ) {
     }
     
 }
-add_action( 'manage_kbte_testimonials_posts_custom_column' , 'kbte_testimonials_admin_column_values', 10, 2 );
+add_action( 'manage_kbcl_testimonials_posts_custom_column' , 'kbcl_testimonials_admin_column_values', 10, 2 );
 
 /*
  * Adds custom Orderby data
  */
-function kbte_testimonials_admin_column_orderby( $vars ) {
+function kbcl_testimonials_admin_column_orderby( $vars ) {
     
     if ( !is_admin() ) {
         return $vars;
@@ -127,18 +127,18 @@ function kbte_testimonials_admin_column_orderby( $vars ) {
     return $vars;
     
 }
-add_filter( 'request', 'kbte_testimonials_admin_column_orderby' );
+add_filter( 'request', 'kbcl_testimonials_admin_column_orderby' );
 
 /**
  * Custom Post Type Archive Pagination Limits.
  */
-function kbte_testimonials_admin_query( $query ) {
+function kbcl_testimonials_admin_query( $query ) {
 
     // Testimonials Admin Query
     if ( is_admin() && $query->is_main_query() ) {
 
         // Set Testimonials per Page as per user option
-        if ( isset( $query->query_vars['post_type'] ) && ( 'kbte_testimonials' == $query->query_vars['post_type'] ) ) {
+        if ( isset( $query->query_vars['post_type'] ) && ( 'kbcl_testimonials' == $query->query_vars['post_type'] ) ) {
 
             // Orders by the Menu Order attribute
             //$query->set('orderby', 'menu_order');
@@ -152,4 +152,4 @@ function kbte_testimonials_admin_query( $query ) {
     }
 
 }
-add_filter( 'pre_get_posts', 'kbte_testimonials_admin_query', 1 );
+add_filter( 'pre_get_posts', 'kbcl_testimonials_admin_query', 1 );

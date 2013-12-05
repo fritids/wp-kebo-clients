@@ -3,7 +3,7 @@
  * Widget to display the Testimonials
  */
 
-if ( ! defined( 'KBTE_VERSION' ) ) {
+if ( ! defined( 'kbcl_VERSION' ) ) {
     header( 'HTTP/1.0 403 Forbidden' );
     die;
 }
@@ -11,17 +11,17 @@ if ( ! defined( 'KBTE_VERSION' ) ) {
 /*
  * Register the Testimonials Widget
  */
-function kbte_testimonials_register_widget() {
+function kbcl_testimonials_register_widget() {
 
-    register_widget( 'Kbte_Testimonials_Widget' );
+    register_widget( 'kbcl_Testimonials_Widget' );
         
 }
-add_action( 'widgets_init', 'kbte_testimonials_register_widget' );
+add_action( 'widgets_init', 'kbcl_testimonials_register_widget' );
 
 /*
  * Class to handle Widget Output
  */
-class Kbte_Testimonials_Widget extends WP_Widget {
+class kbcl_Testimonials_Widget extends WP_Widget {
 
     /**
      * Default Widget Options
@@ -40,16 +40,16 @@ class Kbte_Testimonials_Widget extends WP_Widget {
     /**
      * Setup the Widget
      */
-    function Kbte_Testimonials_Widget() {
+    function kbcl_Testimonials_Widget() {
 
         $widget_ops = array(
-            'classname' => 'kbte_testimonials_widget',
-            'description' => __( 'Displays Testimonials.', 'kbte' )
+            'classname' => 'kbcl_testimonials_widget',
+            'description' => __( 'Displays Testimonials.', 'kbcl' )
         );
 
         $this->WP_Widget(
             false,
-            __( 'Kebo Testimonials', 'kbte' ),
+            __( 'Kebo Testimonials', 'kbcl' ),
             $widget_ops
         );
         
@@ -74,11 +74,11 @@ class Kbte_Testimonials_Widget extends WP_Widget {
         
         ?>
         <label for="<?php echo $this->get_field_id('title'); ?>">
-            <p><?php _e('Title', 'kbte'); ?>: <input style="width: 100%;" type="text" value="<?php echo $instance['title']; ?>" name="<?php echo $this->get_field_name('title'); ?>" id="<?php echo $this->get_field_id('title'); ?>"></p>
+            <p><?php _e('Title', 'kbcl'); ?>: <input style="width: 100%;" type="text" value="<?php echo $instance['title']; ?>" name="<?php echo $this->get_field_name('title'); ?>" id="<?php echo $this->get_field_id('title'); ?>"></p>
         </label>
 
         <label class="count" for="<?php echo $this->get_field_id('count'); ?>">
-            <p><?php _e('Number to show', 'kbte'); ?>: <input style="width: 28px;" type="text" value="<?php echo $instance['count']; ?>" name="<?php echo $this->get_field_name('count'); ?>" id="<?php echo $this->get_field_id('count'); ?>"> <span><?php _e('Range 1-50', 'kbte') ?></span></p>
+            <p><?php _e('Number to show', 'kbcl'); ?>: <input style="width: 28px;" type="text" value="<?php echo $instance['count']; ?>" name="<?php echo $this->get_field_name('count'); ?>" id="<?php echo $this->get_field_id('count'); ?>"> <span><?php _e('Range 1-50', 'kbcl') ?></span></p>
         </label>
         <?php
         
