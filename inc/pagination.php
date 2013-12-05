@@ -1,6 +1,6 @@
 <?php
 /*
- * Pagination for the Testimonials Archive page.
+ * Pagination for the Clients Archive page.
  */
 
 if ( ! defined( 'KBCL_VERSION' ) ) {
@@ -51,7 +51,7 @@ function kbcl_pagination_nav() {
     ?>
     <div class="knav" role="navigation">
         
-        <h1 class="screen-reader-text"><?php _e( 'Testimonials navigation', 'kbcl' ); ?></h1>
+        <h1 class="screen-reader-text"><?php _e( 'Clients navigation', 'kbcl' ); ?></h1>
         
         <div class="kpagination">
             <?php echo $links; ?>

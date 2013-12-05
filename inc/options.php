@@ -26,23 +26,23 @@ function kbcl_plugin_options_init() {
      * Section - General
      */
     add_settings_section(
-            'kbcl_testimonials_general', // Unique identifier for the settings section
+            'kbcl_clients_general', // Unique identifier for the settings section
             __('General', 'kbcl'), // Section title
             '__return_false', // Section callback (we don't want anything)
-            'kbcl-testimonials' // Menu slug
+            'kbcl-clients' // Menu slug
     );
     
     /**
      * General - Visual Style
      */
     add_settings_field(
-            'testimonials_general_visual_style', // Unique identifier for the field for this section
+            'clients_general_visual_style', // Unique identifier for the field for this section
             __('Visual Style', 'kbcl'), // Setting field label
             'kbcl_options_render_visual_style_dropdown', // Function that renders the settings field
-            'kbcl-testimonials', // Menu slug
-            'kbcl_testimonials_general', // Settings section.
+            'kbcl-clients', // Menu slug
+            'kbcl_clients_general', // Settings section.
             array( // Args to pass to render function
-                'name' => 'testimonials_general_visual_style',
+                'name' => 'clients_general_visual_style',
                 'help_text' => __('Set to none to prevent the default stylesheet being enqueued.', 'kbcl')
             ) 
     );
@@ -51,24 +51,24 @@ function kbcl_plugin_options_init() {
      * Section - Archive Options
      */
     add_settings_section(
-            'kbcl_testimonials_archive', // Unique identifier for the settings section
+            'kbcl_clients_archive', // Unique identifier for the settings section
             __('Archive Page', 'kbcl'), // Section title
             '__return_false', // Section callback (we don't want anything)
-            'kbcl-testimonials' // Menu slug
+            'kbcl-clients' // Menu slug
     );
     
     /**
      * General - Page Title
      */
     add_settings_field(
-            'testimonials_archive_page_title', // Unique identifier for the field for this section
+            'clients_archive_page_title', // Unique identifier for the field for this section
             __('Page Title', 'kbcl'), // Setting field label
             'kbcl_options_render_text_input', // Function that renders the settings field
-            'kbcl-testimonials', // Menu slug
-            'kbcl_testimonials_archive', // Settings section.
+            'kbcl-clients', // Menu slug
+            'kbcl_clients_archive', // Settings section.
             array( // Args to pass to render function
-                'name' => 'testimonials_archive_page_title',
-                'help_text' => __('Title of Testimonials page.', 'kbcl')
+                'name' => 'clients_archive_page_title',
+                'help_text' => __('Title of Clients page.', 'kbcl')
             )
     );
     
@@ -76,14 +76,14 @@ function kbcl_plugin_options_init() {
      * General - Page Slug
      */
     add_settings_field(
-            'testimonials_archive_page_slug', // Unique identifier for the field for this section
+            'clients_archive_page_slug', // Unique identifier for the field for this section
             __('Page Slug', 'kbcl'), // Setting field label
             'kbcl_options_render_text_input', // Function that renders the settings field
-            'kbcl-testimonials', // Menu slug
-            'kbcl_testimonials_archive', // Settings section.
+            'kbcl-clients', // Menu slug
+            'kbcl_clients_archive', // Settings section.
             array( // Args to pass to render function
-                'name' => 'testimonials_archive_page_slug',
-                'help_text' => __('Slug of Testimonials page.', 'kbcl')
+                'name' => 'clients_archive_page_slug',
+                'help_text' => __('Slug of Clients page.', 'kbcl')
             )
     );
     
@@ -91,15 +91,15 @@ function kbcl_plugin_options_init() {
      * General - Posts Per Page
      */
     add_settings_field(
-            'testimonials_archive_posts_per_page', // Unique identifier for the field for this section
-            __('Testimonials Per Page', 'kbcl'), // Setting field label
+            'clients_archive_posts_per_page', // Unique identifier for the field for this section
+            __('Clients Per Page', 'kbcl'), // Setting field label
             'kbcl_options_render_text_input', // Function that renders the settings field
-            'kbcl-testimonials', // Menu slug
-            'kbcl_testimonials_archive', // Settings section.
+            'kbcl-clients', // Menu slug
+            'kbcl_clients_archive', // Settings section.
             array( // Args to pass to render function
-                'name' => 'testimonials_archive_posts_per_page',
+                'name' => 'clients_archive_posts_per_page',
                 'label_text' => __('Must be between 1-50.', 'kbcl'),
-                'help_text' => __('Number of Testimonials to show per page. Set to -1 to display all on a single page.', 'kbcl')
+                'help_text' => __('Number of Clients to show per page. Set to -1 to display all on a single page.', 'kbcl')
             )
     );
     
@@ -107,14 +107,14 @@ function kbcl_plugin_options_init() {
      * General - Content Before
      */
     add_settings_field(
-            'testimonials_archive_page_content_before', // Unique identifier for the field for this section
-            __('Content Before Testimonials', 'kbcl'), // Setting field label
+            'clients_archive_page_content_before', // Unique identifier for the field for this section
+            __('Content Before Clients', 'kbcl'), // Setting field label
             'kbcl_options_render_textarea', // Function that renders the settings field
-            'kbcl-testimonials', // Menu slug
-            'kbcl_testimonials_archive', // Settings section.
+            'kbcl-clients', // Menu slug
+            'kbcl_clients_archive', // Settings section.
             array( // Args to pass to render function
-                'name' => 'testimonials_archive_page_content_before',
-                'help_text' => __('Content to display before Testimonials', 'kbcl')
+                'name' => 'clients_archive_page_content_before',
+                'help_text' => __('Content to display before Clients', 'kbcl')
             )
     );
 
@@ -139,12 +139,14 @@ function kbcl_get_plugin_options() {
     $saved = (array) get_option( 'kbcl_plugin_options' );
     
     $defaults = array(
-        // Section - Testimonials - General
-        'testimonials_general_visual_style' => 'default',
-        'testimonials_archive_page_title' => __('Testimonials', 'kbcl'),
-        'testimonials_archive_page_slug' => __('testimonials', 'kbcl'),
-        'testimonials_archive_posts_per_page' => 10,
-        'testimonials_archive_page_content_before' => null
+        // Section - Clients - General
+        'clients_general_visual_style' => 'default',
+        
+        // Section - Archive - General
+        'clients_archive_page_title' => __('Clients', 'kbcl'),
+        'clients_archive_page_slug' => __('clients', 'kbcl'),
+        'clients_archive_posts_per_page' => 10,
+        'clients_archive_page_content_before' => null
     );
 
     $defaults = apply_filters( 'kbcl_get_plugin_options', $defaults );
@@ -287,38 +289,38 @@ function kbcl_plugin_options_validate( $input ) {
     $output = array();
     
     // General Section
-    if ( isset( $input['testimonials_general_visual_style'] ) && array_key_exists( $input['testimonials_general_visual_style'], kbcl_options_visual_style_dropdown() ) ) {
-        $output['testimonials_general_visual_style'] = $input['testimonials_general_visual_style'];
+    if ( isset( $input['clients_general_visual_style'] ) && array_key_exists( $input['clients_general_visual_style'], kbcl_options_visual_style_dropdown() ) ) {
+        $output['clients_general_visual_style'] = $input['clients_general_visual_style'];
     }
     
     // Archive Section
-    if ( isset( $input['testimonials_archive_page_title'] ) && ! empty( $input['testimonials_archive_page_title'] ) ) {
-	$output['testimonials_archive_page_title'] = sanitize_title( $input['testimonials_archive_page_title'] );
+    if ( isset( $input['clients_archive_page_title'] ) && ! empty( $input['clients_archive_page_title'] ) ) {
+	$output['clients_archive_page_title'] = sanitize_title( $input['clients_archive_page_title'] );
     }
     
-    if ( isset( $input['testimonials_archive_page_slug'] ) && ! empty( $input['testimonials_archive_page_slug'] ) ) {
-	$output['testimonials_archive_page_slug'] = wp_unique_post_slug( $input['testimonials_archive_page_slug'] );
+    if ( isset( $input['clients_archive_page_slug'] ) && ! empty( $input['clients_archive_page_slug'] ) ) {
+	$output['clients_archive_page_slug'] = wp_unique_post_slug( $input['clients_archive_page_slug'] );
     }
     
-    if ( isset( $input['testimonials_archive_posts_per_page'] ) && is_numeric( $input['testimonials_archive_posts_per_page'] ) ) {
+    if ( isset( $input['clients_archive_posts_per_page'] ) && is_numeric( $input['clients_archive_posts_per_page'] ) ) {
 
         // If 'count' is above 50 reset to 50.
-        if ( 50 <= intval( $input['testimonials_archive_posts_per_page'] ) ) {
-            $input['testimonials_archive_posts_per_page'] = 50;
+        if ( 50 <= intval( $input['clients_archive_posts_per_page'] ) ) {
+            $input['clients_archive_posts_per_page'] = 50;
         }
 
         // If 'count' is below 1 reset to 1.
-        if ( 1 >= intval( $input['testimonials_archive_posts_per_page'] ) && -1 != intval( $input['testimonials_archive_posts_per_page'] ) ) {
-            $input['testimonials_archive_posts_per_page'] = 10;
+        if ( 1 >= intval( $input['clients_archive_posts_per_page'] ) && -1 != intval( $input['clients_archive_posts_per_page'] ) ) {
+            $input['clients_archive_posts_per_page'] = 10;
         }
 
         // Update 'count' using intval to remove decimals.
-        $output['testimonials_archive_posts_per_page'] = intval( $input['testimonials_archive_posts_per_page'] );
+        $output['clients_archive_posts_per_page'] = intval( $input['clients_archive_posts_per_page'] );
         
     }
     
-    if ( isset( $input['testimonials_archive_page_content_before'] ) && ! empty( $input['testimonials_archive_page_content_before'] ) ) {
-	$output['testimonials_archive_page_content_before'] = wp_filter_post_kses( $input['testimonials_archive_page_content_before'] );
+    if ( isset( $input['clients_archive_page_content_before'] ) && ! empty( $input['clients_archive_page_content_before'] ) ) {
+	$output['clients_archive_page_content_before'] = wp_filter_post_kses( $input['clients_archive_page_content_before'] );
     }
     
     $options = kbcl_get_plugin_options();

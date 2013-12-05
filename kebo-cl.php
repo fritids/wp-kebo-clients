@@ -188,16 +188,20 @@ function kbcl_pointer_script_style() {
 
     // Check if our pointer is not among dismissed ones
     if ( ! in_array( 'kbcl_install_pointer', $dismissed_pointers ) ) {
+        
         $enqueue_pointer_script_style = true;
 
         // Add footer scripts using callback function
         add_action( 'admin_print_footer_scripts', 'kbcl_pointer_script_style' );
+        
     }
 
     // Enqueue pointer CSS and JS files, if needed
     if ( $enqueue_pointer_script_style ) {
+        
         wp_enqueue_style( 'wp-pointer' );
         wp_enqueue_script( 'wp-pointer' );
+        
     }
     
 }

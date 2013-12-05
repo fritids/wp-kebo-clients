@@ -1,6 +1,6 @@
 <?php
 /* 
- * Kebo testimonials - Post Meta
+ * Kebo Clients - Post Meta
  */
 
 if ( ! defined( 'KBCL_VERSION' ) ) {
@@ -11,133 +11,110 @@ if ( ! defined( 'KBCL_VERSION' ) ) {
 /*
  * 
  */
-function kbcl_testimonials_add_client_meta() {
+function kbcl_clients_add_client_meta() {
     
     add_meta_box(
-        'kbcl_testimonials_post_meta',
+        'kbcl_clients_post_meta',
         __('Testimonial Details', 'kbcl'),
-        'kbcl_testimonials_client_details_render',
-        'kbcl_testimonials',
+        'kbcl_clients_client_details_render',
+        'kbcl_clients',
         'side',
         'core'
     );
     
 }
-add_action( 'admin_init', 'kbcl_testimonials_add_client_meta' );
+add_action( 'admin_init', 'kbcl_clients_add_client_meta' );
 
-function kbcl_testimonials_client_details_render() {
+function kbcl_clients_client_details_render() {
     
-    $custom_post_meta = get_post_meta( get_the_ID(), 'kbcl_testimonials_post_meta', true );
+    $custom_post_meta = get_post_meta( get_the_ID(), 'kbcl_clients_post_meta', true );
     
     // Defaults if not set
-    $name = ( isset( $custom_post_meta['reviewer_name'] ) ) ? $custom_post_meta['reviewer_name'] : '' ;
-    $email = ( isset( $custom_post_meta['reviewer_email'] ) ) ? $custom_post_meta['reviewer_email'] : '' ;
-    $url = ( isset( $custom_post_meta['reviewer_url'] ) ) ? $custom_post_meta['reviewer_url'] : '' ;
-    $rating = ( isset( $custom_post_meta['reviewer_rating'] ) ) ? $custom_post_meta['reviewer_rating'] : null ;
+    $name = ( isset( $custom_post_meta['client_name'] ) ) ? $custom_post_meta['client_name'] : '' ;
+    $email = ( isset( $custom_post_meta['client_email'] ) ) ? $custom_post_meta['client_email'] : '' ;
+    $url = ( isset( $custom_post_meta['client_url'] ) ) ? $custom_post_meta['client_url'] : '' ;
+    $rating = ( isset( $custom_post_meta['client_rating'] ) ) ? $custom_post_meta['client_rating'] : null ;
     ?>
     <div class="kpostmeta">
         
         <p>
-            <label for="kbcl_reviewer_name"><strong><?php echo __('Name: (optional)', 'kbcl'); ?></strong></label>
+            <label for="kbcl_client_name"><strong><?php echo __('Name: (optional)', 'kbcl'); ?></strong></label>
         </p>
         
         <p>
-            <input type="text" id="kbcl_reviewer_name" name="kbcl_reviewer_name" value="<?php echo $name; ?>" />
+            <input type="text" id="kbcl_client_name" name="kbcl_client_name" value="<?php echo $name; ?>" />
         </p>
         
         <p>
-            <label for="kbcl_reviewer_email"><strong><?php echo __('Email: (optional)', 'kbcl'); ?></strong></label>
+            <label for="kbcl_client_email"><strong><?php echo __('Email: (optional)', 'kbcl'); ?></strong></label>
         </p>
         
         <p>
-            <input type="text" id="kbcl_reviewer_email" name="kbcl_reviewer_email" value="<?php echo $email; ?>" />
+            <input type="text" id="kbcl_client_email" name="kbcl_client_email" value="<?php echo $email; ?>" />
         </p>
         
         <p>
-            <label for="kbcl_reviewer_url"><strong><?php echo __('URL: (optional)', 'kbcl'); ?></strong></label>
+            <label for="kbcl_client_url"><strong><?php echo __('URL: (optional)', 'kbcl'); ?></strong></label>
         </p>
         
         <p>
-            <input type="text" id="kbcl_reviewer_url" name="kbcl_reviewer_url" value="<?php echo $url; ?>" />
+            <input type="text" id="kbcl_client_url" name="kbcl_client_url" value="<?php echo $url; ?>" />
         </p>
         
-        <p>
-            <label><strong><?php echo __('Rating: (optional)', 'kbcl'); ?></strong></label>
-        </p>
-        
-        <div class="krating">
-            
-            <input type="radio" id="kbcl_rating_5" class="krating-input" name="kbcl_reviewer_rating" value="5" <?php checked( $rating, 5 ); ?>>
-            <label for="kbcl_rating_5" class="krating-star"></label>
-            
-            <input type="radio" id="kbcl_rating_4" class="krating-input" name="kbcl_reviewer_rating" value="4" <?php checked( $rating, 4 ); ?>>
-            <label for="kbcl_rating_4" class="krating-star"></label>
-            
-            <input type="radio" id="kbcl_rating_3" class="krating-input" name="kbcl_reviewer_rating" value="3" <?php checked( $rating, 3 ); ?>>
-            <label for="kbcl_rating_3" class="krating-star"></label>
-            
-            <input type="radio" id="kbcl_rating_2" class="krating-input" name="kbcl_reviewer_rating" value="2" <?php checked( $rating, 2 ); ?>>
-            <label for="kbcl_rating_2" class="krating-star"></label>
-            
-            <input type="radio" id="kbcl_rating_1" class="krating-input" name="kbcl_reviewer_rating" value="1" <?php checked( $rating, 1 ); ?>>
-            <label for="kbcl_rating_1" class="krating-star"></label>
-            
-        </div>
-        
-        <?php wp_nonce_field( 'kebo_testimonials_meta-site', 'kbcl-testimonials-meta' ); ?>
+        <?php wp_nonce_field( 'kebo_clients_meta-site', 'kbcl-clients-meta' ); ?>
         
     </div>
     <?php
     
 }
 
-function kbcl_save_testimonials_client_details( $post_id ) {
+function kbcl_save_clients_client_details( $post_id ) {
     
     // Check Post Type
     if ( isset( $_POST['post_type'] ) ) {
         
-        if ( 'kbcl_testimonials' == $_POST['post_type'] ) {
+        if ( 'kbcl_clients' == $_POST['post_type'] ) {
 
             // Avoid autosave overwriting meta.
             if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) 
                 return $post_id; 
             
             // Check for valid Nonse.
-            $nonce = $_REQUEST['kbcl-testimonials-meta'];
+            $nonce = $_REQUEST['kbcl-clients-meta'];
             
-            if ( wp_verify_nonce( $nonce, 'kebo_testimonials_meta-site' ) ) {
+            if ( wp_verify_nonce( $nonce, 'kebo_clients_meta-site' ) ) {
 
                 $data = array();
                 
                 // Store data in post meta table if present in post data
-                if ( isset( $_POST['kbcl_reviewer_name'] ) && ! empty( $_POST['kbcl_reviewer_name'] ) ) {
+                if ( isset( $_POST['kbcl_client_name'] ) && ! empty( $_POST['kbcl_client_name'] ) ) {
                     
-                    $data['reviewer_name'] = $_POST['kbcl_reviewer_name'];
-                    
-                }
-                
-                // Store data in post meta table if present in post data
-                if ( isset( $_POST['kbcl_reviewer_email'] ) && ! empty( $_POST['kbcl_reviewer_email'] ) && is_email( $_POST['kbcl_reviewer_email'] ) ) {
-                    
-                    $data['reviewer_email'] = $_POST['kbcl_reviewer_email'];
+                    $data['client_name'] = $_POST['kbcl_client_name'];
                     
                 }
                 
                 // Store data in post meta table if present in post data
-                if ( isset( $_POST['kbcl_reviewer_url'] ) && ! empty( $_POST['kbcl_reviewer_url'] ) && filter_var( $_POST['kbcl_reviewer_url'], FILTER_VALIDATE_URL, FILTER_FLAG_HOST_REQUIRED ) ) {
+                if ( isset( $_POST['kbcl_client_email'] ) && ! empty( $_POST['kbcl_client_email'] ) && is_email( $_POST['kbcl_client_email'] ) ) {
                     
-                    $data['reviewer_url'] = $_POST['kbcl_reviewer_url'];
+                    $data['client_email'] = $_POST['kbcl_client_email'];
                     
                 }
                 
                 // Store data in post meta table if present in post data
-                if ( isset( $_POST['kbcl_reviewer_rating'] ) && ! empty( $_POST['kbcl_reviewer_rating'] ) ) {
+                if ( isset( $_POST['kbcl_client_url'] ) && ! empty( $_POST['kbcl_client_url'] ) && filter_var( $_POST['kbcl_client_url'], FILTER_VALIDATE_URL, FILTER_FLAG_HOST_REQUIRED ) ) {
                     
-                    $data['reviewer_rating'] = absint( $_POST['kbcl_reviewer_rating'] );
+                    $data['client_url'] = $_POST['kbcl_client_url'];
                     
                 }
                 
-                update_post_meta( $post_id, 'kbcl_testimonials_post_meta', $data );
+                // Store data in post meta table if present in post data
+                if ( isset( $_POST['kbcl_client_rating'] ) && ! empty( $_POST['kbcl_client_rating'] ) ) {
+                    
+                    $data['client_rating'] = absint( $_POST['kbcl_client_rating'] );
+                    
+                }
+                
+                update_post_meta( $post_id, 'kbcl_clients_post_meta', $data );
 
             }
             
@@ -146,4 +123,4 @@ function kbcl_save_testimonials_client_details( $post_id ) {
     }
     
 }
-add_action( 'save_post', 'kbcl_save_testimonials_client_details', 10, 2 );
+add_action( 'save_post', 'kbcl_save_clients_client_details', 10, 2 );
