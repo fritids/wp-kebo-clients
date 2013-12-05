@@ -140,7 +140,7 @@ function kbcl_enqueue_frontend() {
         
         $options = kbcl_get_plugin_options();
         
-        if ( 'none' != $options['testimonials_general_visual_style'] ) {
+        if ( 'none' != $options['clients_general_visual_style'] ) {
         
             wp_enqueue_style( 'kbcl-front' );
         
