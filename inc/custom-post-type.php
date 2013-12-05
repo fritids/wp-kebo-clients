@@ -54,7 +54,7 @@ function kbcl_create_clients_cpt() {
         'capability_type' => 'post',
         'hierarchical' => false,
         // Can Contain 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments', 'revisions'
-        'supports' => array( 'title', 'editor', 'thumbnail', 'page-attributes' ),
+        'supports' => array( 'title', 'editor', 'thumbnail' ),
         'taxonomies' => array(''),
         'menu_icon' => '',
         'rewrite' => array(
