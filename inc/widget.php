@@ -1,27 +1,27 @@
 <?php
 /* 
- * Widget to display the Testimonials
+ * Widget to display the Clients
  */
 
-if ( ! defined( 'kbcl_VERSION' ) ) {
+if ( ! defined( 'KBCL_VERSION' ) ) {
     header( 'HTTP/1.0 403 Forbidden' );
     die;
 }
 
 /*
- * Register the Testimonials Widget
+ * Register the Clients Widget
  */
-function kbcl_testimonials_register_widget() {
+function kbcl_clients_register_widget() {
 
-    register_widget( 'kbcl_Testimonials_Widget' );
+    register_widget( 'Kbcl_Clients_Widget' );
         
 }
-add_action( 'widgets_init', 'kbcl_testimonials_register_widget' );
+add_action( 'widgets_init', 'kbcl_clients_register_widget' );
 
 /*
  * Class to handle Widget Output
  */
-class kbcl_Testimonials_Widget extends WP_Widget {
+class Kbcl_Clients_Widget extends WP_Widget {
 
     /**
      * Default Widget Options
@@ -40,16 +40,16 @@ class kbcl_Testimonials_Widget extends WP_Widget {
     /**
      * Setup the Widget
      */
-    function kbcl_Testimonials_Widget() {
+    function Kbcl_Clients_Widget() {
 
         $widget_ops = array(
-            'classname' => 'kbcl_testimonials_widget',
-            'description' => __( 'Displays Testimonials.', 'kbcl' )
+            'classname' => 'kbcl_clients_widget',
+            'description' => __( 'Displays Clients.', 'kbcl' )
         );
 
         $this->WP_Widget(
             false,
-            __( 'Kebo Testimonials', 'kbcl' ),
+            __( 'Kebo Clients', 'kbcl' ),
             $widget_ops
         );
         
@@ -98,7 +98,7 @@ class kbcl_Testimonials_Widget extends WP_Widget {
         $instance['title'] = wp_filter_nohtml_kses($new_instance['title']);
 
         // Check 'count' is numeric.
-        if ( is_numeric($new_instance['count'] ) ) {
+        if ( is_numeric( $new_instance['count'] ) ) {
 
             // If 'count' is above 50 reset to 50.
             if ( 50 <= intval( $new_instance['count'] ) ) {
@@ -106,7 +106,7 @@ class kbcl_Testimonials_Widget extends WP_Widget {
             }
 
             // If 'count' is below 1 reset to 1.
-            if ( 1 >= intval($new_instance['count'] ) ) {
+            if ( 1 >= intval( $new_instance['count'] ) ) {
                 $new_instance['count'] = 1;
             }
 

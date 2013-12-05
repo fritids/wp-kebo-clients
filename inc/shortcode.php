@@ -1,17 +1,17 @@
 <?php
 /* 
- * Shortcode to display the Testimonials
+ * Shortcode to display the Clients
  */
 
-if ( ! defined( 'kbcl_VERSION' ) ) {
+if ( ! defined( 'KBCL_VERSION' ) ) {
     header( 'HTTP/1.0 403 Forbidden' );
     die;
 }
 
 /*
- * Register Shortcode to output Testimonials
+ * Register Shortcode to output Clients
  */
-function kbcl_testimonials_shortcode( $atts ) {
+function kbcl_clients_shortcode( $atts ) {
     
     /*
      * Prepare Args
@@ -26,4 +26,4 @@ function kbcl_testimonials_shortcode( $atts ) {
     return $output;
     
 }
-add_shortcode( 'kebo_testimonials', 'kbcl_testimonials_shortcode' );
+add_shortcode( 'kebo_clients', 'kbcl_clients_shortcode' );
