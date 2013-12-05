@@ -33,7 +33,6 @@ function kbcl_clients_client_details_render() {
     $name = ( isset( $custom_post_meta['client_name'] ) ) ? $custom_post_meta['client_name'] : '' ;
     $email = ( isset( $custom_post_meta['client_email'] ) ) ? $custom_post_meta['client_email'] : '' ;
     $url = ( isset( $custom_post_meta['client_url'] ) ) ? $custom_post_meta['client_url'] : '' ;
-    $rating = ( isset( $custom_post_meta['client_rating'] ) ) ? $custom_post_meta['client_rating'] : null ;
     ?>
     <div class="kpostmeta">
         
