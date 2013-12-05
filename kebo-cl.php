@@ -56,58 +56,58 @@ function kbcl_plugin_setup() {
     /*
      * Include Options.
      */
-    require_once( KBLE_PATH . 'inc/options.php' );
+    require_once( KBCL_PATH . 'inc/options.php' );
     
     /*
      * Include Custom Post Type.
      */
-    require_once( KBLE_PATH . 'inc/custom-post-type.php' );
+    require_once( KBCL_PATH . 'inc/custom-post-type.php' );
     
     /*
      * Include Meta Functions.
      */
-    require_once( KBLE_PATH . 'inc/meta.php' );
+    require_once( KBCL_PATH . 'inc/meta.php' );
     
     /*
      * Include Shortcode.
      */
-    require_once( KBLE_PATH . 'inc/shortcode.php' );
+    require_once( KBCL_PATH . 'inc/shortcode.php' );
     
     /*
      * Include Widget.
      */
-    require_once( KBLE_PATH . 'inc/widget.php' );
+    require_once( KBCL_PATH . 'inc/widget.php' );
     
     if ( is_admin() ) {
     
         /*
          * Include Admin Customisations.
          */
-        require_once( KBLE_PATH . 'inc/admin.php' );
+        require_once( KBCL_PATH . 'inc/admin.php' );
         
         /*
          * Include Menu Page.
          */
-        require_once( KBLE_PATH . 'inc/menu.php' );
+        require_once( KBCL_PATH . 'inc/menu.php' );
     
     } else {
         
         /*
          * Include Frontend Customisations.
          */
-        require_once( KBLE_PATH . 'inc/front.php' );
+        require_once( KBCL_PATH . 'inc/front.php' );
         
         /*
          * Include Pagination.
          */
-        require_once( KBLE_PATH . 'inc/pagination.php' );
+        require_once( KBCL_PATH . 'inc/pagination.php' );
         
     }
     
     /*
      * Include Misc Functions.
      */
-    require_once( KBLE_PATH . 'inc/misc.php' );
+    require_once( KBCL_PATH . 'inc/misc.php' );
     
 }
 add_action( 'plugins_loaded', 'kbcl_plugin_setup', 15 );
@@ -169,14 +169,14 @@ add_action( 'admin_enqueue_scripts', 'kbcl_enqueue_backend' );
  */
 function kbcl_add_plugin_link( $links ) {
     
-    $links[] = '<a href="' . admin_url( 'options-general.php?page=kbcl-clients' ) . '">' . __( 'Settings', 'kbcl' ) . '</a>';
+    $links[] = '<a href="' . admin_url( 'edit.php?post_type=kbcl_clients&page=kbcl-clients' ) . '">' . __( 'Settings', 'kbcl' ) . '</a>';
     return $links;
     
 }
 add_filter( 'plugin_action_links_kebo-cl/kebo-cl.php', 'kbcl_add_plugin_link' );
 
 /**
- * Adds a WordPress Pointer to Kebo Testimonials options page.
+ * Adds a WordPress Pointer to Kebo Clients options page.
  */
 function kbcl_pointer_script_style() {
 

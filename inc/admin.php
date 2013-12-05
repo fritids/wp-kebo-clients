@@ -18,9 +18,8 @@ function kbcl_clients_admin_columns( $columns ) {
     
     // Add Required Columns
     $columns['cb'] = '<input type="checkbox" />';
-    $columns['details'] = __( 'Details', 'kbcl' );
     $columns['title'] = __( 'Title', 'kbcl' );
-    $columns['rating'] = __( 'Rating', 'kbcl' );
+    $columns['details'] = __( 'Details', 'kbcl' );
     $columns['date'] = __( 'Date', 'kbcl' );
     
     return $columns;
@@ -110,7 +109,7 @@ add_action( 'manage_kbcl_clients_posts_custom_column' , 'kbcl_clients_admin_colu
  */
 function kbcl_clients_admin_column_orderby( $vars ) {
     
-    if ( !is_admin() ) {
+    if ( ! is_admin() ) {
         return $vars;
     }
     

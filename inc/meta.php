@@ -15,7 +15,7 @@ function kbcl_clients_add_client_meta() {
     
     add_meta_box(
         'kbcl_clients_post_meta',
-        __('Testimonial Details', 'kbcl'),
+        __('Client Details', 'kbcl'),
         'kbcl_clients_client_details_render',
         'kbcl_clients',
         'side',
