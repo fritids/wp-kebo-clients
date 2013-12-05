@@ -30,8 +30,34 @@ if ( is_multisite() ) {
 
         switch_to_blog( $blog->blog_id );
 
-        // Delete the Options we registered.
-        //delete_option('kebo_twitter_options');
+        // Delete the Option we registered.
+        delete_option( 'kbcl_plugin_options' );
+
+        // Delete all Posts with our Custom Post Type
+        $args = array(
+            'post_type' => 'kbcl_clients',
+            'post_status' => array( 'any', 'revision' ),
+            'posts_per_page' => -1,
+        );
+
+        // Query for posts
+        $kbcl_posts = new WP_Query( $args );
+
+        if ( ! isset( $kbcl_posts ) || ! is_object( $kbcl_posts->posts ) ) {
+            return;
+        }
+
+        // Loop each post and delete
+        foreach ( $kbcl_posts->posts as $post ) {
+
+            // Ensure it is the correct post type
+            if ( 'kbcl_clients' == $post->post_type ) {
+
+                wp_delete_post( $post->ID, true );
+
+            }
+
+        }
         
     }
 
@@ -41,6 +67,32 @@ if ( is_multisite() ) {
 } else {
 
     // Delete the Option we registered.
-    //delete_option('kebo_twitter_options');
+    delete_option( 'kbcl_plugin_options' );
+    
+    // Delete all Posts with our Custom Post Type
+    $args = array(
+	'post_type' => 'kbcl_clients',
+        'post_status' => array( 'any', 'revision' ),
+        'posts_per_page' => -1,
+    );
+    
+    // Query for posts
+    $kbcl_posts = new WP_Query( $args );
+    
+    if ( ! isset( $kbcl_posts ) || ! is_object( $kbcl_posts->posts ) ) {
+        return;
+    }
+    
+    // Loop each post and delete
+    foreach ( $kbcl_posts->posts as $post ) {
+        
+        // Ensure it is the correct post type
+        if ( 'kbcl_clients' == $post->post_type ) {
+            
+            wp_delete_post( $post->ID, true );
+            
+        }
+        
+    }
     
 }
