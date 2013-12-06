@@ -50,7 +50,7 @@ function kbcl_create_clients_cpt() {
         'show_in_nav_menus' => false,
         'show_in_menu' => true, // Visible as Top Level Menu
         'show_in_admin_bar',
-        'menu_position' => 20.83841, // TODO??
+        'menu_position' => 99, // 99+ for bottom of list
         'capability_type' => 'post',
         'hierarchical' => false,
         // Can Contain 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments', 'revisions'
@@ -71,4 +71,4 @@ function kbcl_create_clients_cpt() {
     register_post_type( 'kbcl_clients', $args );
     
 }
-add_action( 'init', 'kbcl_create_clients_cpt' );
+add_action( 'init', 'kbcl_create_clients_cpt', 1 );
