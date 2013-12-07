@@ -56,18 +56,3 @@ function kbcl_get_page_content_before() {
     return wp_filter_post_kses( $content );
     
 }
-
-/*
- * Helper Function - Returns Reviewer Name
- */
-function kbcl_get_client_name() {
-    
-    global $post;
-    
-    $kbcl_custom_meta = get_post_meta( $post->ID, 'kbcl_clients_post_meta', true );
-    
-    $name = ( isset( $kbcl_custom_meta['client_name'] ) ) ? $kbcl_custom_meta['client_name'] : '' ;
-    
-    return esc_html( $name );
-    
-}

@@ -63,21 +63,6 @@ function kbcl_plugin_setup() {
      */
     require_once( KBCL_PATH . 'inc/custom-post-type.php' );
     
-    /*
-     * Include Meta Functions.
-     */
-    require_once( KBCL_PATH . 'inc/meta.php' );
-    
-    /*
-     * Include Shortcode.
-     */
-    require_once( KBCL_PATH . 'inc/shortcode.php' );
-    
-    /*
-     * Include Widget.
-     */
-    require_once( KBCL_PATH . 'inc/widget.php' );
-    
     if ( is_admin() ) {
     
         /*
