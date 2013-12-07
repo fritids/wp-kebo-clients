@@ -18,8 +18,7 @@ function kbcl_clients_admin_columns( $columns ) {
     
     // Add Required Columns
     $columns['cb'] = '<input type="checkbox" />';
-    $columns['title'] = __( 'Title', 'kbcl' );
-    $columns['details'] = __( 'Details', 'kbcl' );
+    $columns['title'] = __( 'Client Name', 'kbcl' );
     $columns['date'] = __( 'Date', 'kbcl' );
     
     return $columns;
@@ -48,56 +47,9 @@ function kbcl_clients_admin_column_values( $column, $post_id ) {
     
     global $post;
     
-    $kbcl_custom_meta = get_post_meta( $post->ID, 'kbcl_clients_post_meta', true );
-    
     switch ( $column ) {
 
-        case 'details' :
-            
-            // Prepare Meta
-            $name = kbcl_get_review_name();
-            $email = kbcl_get_review_email();
-            $url = kbcl_get_review_url();
-            
-            // Output Name
-            if ( ! empty ( $name ) && ! empty ( $url ) ) {
-                
-                echo '<a href="' . $url .'" target="_blank">' . $name . '</a><br>';
-                
-            } elseif ( ! empty ( $name ) ) {
-                
-                echo '<span>' . $name . '</span><br>';
-                
-            }
-            
-            // Output Email
-            if ( ! empty( $email ) ) {
-                
-                echo '<a href="mailto:' . $email .'">' . $email . '</a>';
-                
-            }
-            
-            if ( empty ( $name ) && empty ( $email ) ) {
-                
-                echo '-';
-                
-            }
-            
-        break;
-    
-        case 'rating' :
-            
-            if ( kbcl_get_review_rating() ) {
-                
-                echo kbcl_get_review_rating_stars();
-                
-            } else {
-                
-                echo __('Not Rated', 'kbcl');
-                
-            }
-            
-        break;
+        // Add Custom Column Data
 
     }
     
