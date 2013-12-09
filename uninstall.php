@@ -79,7 +79,7 @@ if ( is_multisite() ) {
     // Query for posts
     $kbcl_posts = new WP_Query( $args );
     
-    if ( ! isset( $kbcl_posts ) || ! is_object( $kbcl_posts->posts ) ) {
+    if ( ! isset( $kbcl_posts ) || false != $kbcl_posts ) {
         return;
     }
     
