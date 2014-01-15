@@ -1,12 +1,12 @@
 <?php
 /*
- * Plugin Name: Kebo Clients
+ * Plugin Name: Kebo Friends
  * Plugin URI: http://kebopowered.com/plugins/kebo-clients/
- * Description: Easiest way to add great looking Clients List to your website.
+ * Description: Easiest way to add great looking Friends List to your website.
  * Version: 0.5.0
  * Author: Kebo
  * Author URI: http://kebopowered.com
- * Text Domain: kbcl
+ * Text Domain: kbfr
  * Domain Path: languages
  */
 
