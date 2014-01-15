@@ -72,3 +72,81 @@ function kbfr_create_friends_cpt() {
     
 }
 add_action( 'init', 'kbfr_create_friends_cpt', 1 );
+
+/*
+ * Friends CPT Meta
+ */
+function kbfr_friends_add_friend_meta() {
+    
+    add_meta_box(
+        'kbfr_friends_post_meta',
+        __('Friend Details', 'kbfr'),
+        'kbfr_friends_details_render',
+        'kbfr_friends',
+        'side',
+        'core'
+    );
+    
+}
+add_action( 'admin_init', 'kbfr_friends_add_friend_meta' );
+
+function kbfr_friends_details_render() {
+    
+    $kbfr_custom_meta = get_post_meta( get_the_ID(), '_kbfr_friends_meta_details', true );
+    
+    // Defaults if not set
+    $url = ( isset( $kbte_custom_meta['friend_url'] ) ) ? $kbte_custom_meta['friend_url'] : '' ;
+    ?>
+    <div class="kpostmeta">
+        
+        <p>
+            <label for="kbfr_friend_url"><strong><?php echo __('URL: (optional)', 'kbfr'); ?></strong></label>
+        </p>
+        
+        <p>
+            <input type="text" id="kbfr_friend_url" name="kbfr_friend_url" value="<?php echo $url; ?>" />
+        </p>
+        
+        <?php wp_nonce_field( 'kebo_friends_meta-site', 'kbfr-friends-meta' ); ?>
+        
+    </div>
+    <?php
+    
+}
+
+function kbfr_save_friends_friend_details( $post_id ) {
+    
+    // Check Post Type
+    if ( isset( $_POST['post_type'] ) && isset( $_REQUEST['kbfr-friends-meta'] ) ) {
+        
+        if ( 'kbfr_friends' == $_POST['post_type'] ) {
+
+            // Avoid autosave overwriting meta.
+            if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) 
+                return $post_id; 
+            
+            // Check for valid Nonse.
+            $nonce = $_REQUEST['kbfr-friends-meta'];
+            
+            if ( wp_verify_nonce( $nonce, 'kebo_friends_meta-site' ) ) {
+
+                $data = array();
+                
+                // Store data in post meta table if present in post data
+                if ( isset( $_POST['kbfr_friend_url'] ) && ! empty( $_POST['kbfr_friend_url'] ) && filter_var( $_POST['kbfr_friend_url'], FILTER_VALIDATE_URL, FILTER_FLAG_HOST_REQUIRED ) ) {
+                    
+                    $data['friend_url'] = $_POST['kbfr_friend_url'];
+                    
+                }
+                
+                // Update Combined Details
+                update_post_meta( $post_id, '_kbfr_friends_meta_details', $data );
+
+            }
+            
+        }
+        
+    }
+    
+}
+add_action( 'save_post', 'kbfr_save_friends_friend_details', 10, 2 );
