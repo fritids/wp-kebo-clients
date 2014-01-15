@@ -46,7 +46,7 @@ get_header();
                         
                 </div><!-- .kfriends-container -->
                         
-                <?php kbcl_pagination_nav(); ?>
+                <?php kbfr_pagination_nav(); ?>
 
             <?php else : ?>
                         

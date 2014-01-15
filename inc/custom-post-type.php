@@ -95,7 +95,7 @@ function kbfr_friends_details_render() {
     $kbfr_custom_meta = get_post_meta( get_the_ID(), '_kbfr_friends_meta_details', true );
     
     // Defaults if not set
-    $url = ( isset( $kbte_custom_meta['friend_url'] ) ) ? $kbte_custom_meta['friend_url'] : '' ;
+    $url = ( isset( $kbfr_custom_meta['friend_url'] ) ) ? $kbfr_custom_meta['friend_url'] : '' ;
     ?>
     <div class="kpostmeta">
         

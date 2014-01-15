@@ -22,7 +22,7 @@ define( 'KBFR_PATH', plugin_dir_path(__FILE__) );
 /*
  * Load textdomain early, as we need it for the PHP version check.
  */
-function kbcfr_load_textdomain() {
+function kbfr_load_textdomain() {
     
     load_plugin_textdomain( 'kbfr', false, KBSO_PATH . '/languages' );
     
@@ -101,14 +101,14 @@ add_action( 'plugins_loaded', 'kbfr_plugin_setup', 15 );
 /**
  * Register plugin scripts and styles.
  */
-function kbcl_register_files() {
+function kbfr_register_files() {
 
     // Register Styles
-    wp_register_style( 'kbfr-front', KBCL_URL . 'assets/css/front.css', array(), KBFR_VERSION, 'all' );
-    wp_register_style( 'kbfr-admin', KBCL_URL . 'assets/css/admin.css', array(), KBFR_VERSION, 'all' );
+    wp_register_style( 'kbfr-front', KBFR_URL . 'assets/css/front.css', array(), KBFR_VERSION, 'all' );
+    wp_register_style( 'kbfr-admin', KBFR_URL . 'assets/css/admin.css', array(), KBFR_VERSION, 'all' );
         
     // Register Scripts
-    wp_register_script( 'responsive-slides', KBCL_URL . 'assets/js/vendor/responsiveslides.min.js', array( 'jquery' ), KBFR_VERSION, false );
+    wp_register_script( 'responsive-slides', KBFR_URL . 'assets/js/vendor/responsiveslides.min.js', array( 'jquery' ), KBFR_VERSION, false );
         
 }
 add_action( 'wp_enqueue_scripts', 'kbfr_register_files' );

@@ -11,14 +11,14 @@ get_header();
 
     <div class="kfriends">
         
-            <?php if ( kbcl_get_page_title() ) { ?>
+            <?php if ( kbfr_get_page_title() ) { ?>
                 <h2 class="page-title">
-                    <?php echo kbcl_get_page_title(); ?>
+                    <?php echo kbfr_get_page_title(); ?>
                 </h2>
             <?php } ?>
 
             <div class="kcontentbefore">
-                <?php echo wpautop( kbcl_get_page_content_before() ); ?>
+                <?php echo wpautop( kbfr_get_page_content_before() ); ?>
             </div>
 
             <?php if ( have_posts() ) : ?>
@@ -28,6 +28,12 @@ get_header();
                     <ul class="small-kebo-grid-4 medium-kebo-grid-6 large-kebo-grid-8">
 
                         <?php while ( have_posts() ) : the_post(); ?>
+                        
+                            <?php
+                            $kbfr_custom_meta = get_post_meta( get_the_ID(), '_kbfr_friends_meta_details', true );
+                            // Defaults if not set
+                            $url = ( isset( $kbfr_custom_meta['friend_url'] ) ) ? $kbfr_custom_meta['friend_url'] : '' ;
+                            ?>
                         
                             <li>
 
@@ -45,6 +51,7 @@ get_header();
                                             
                                         }
                                         ?>
+                                        <div>URL: <?php echo $url; ?></div>
                                     </div>
 
                                 </div><!-- #post-<?php the_ID(); ?> -->
@@ -57,7 +64,7 @@ get_header();
                         
                 </div><!-- .kfriends -->
                 
-                <?php kbcl_pagination_nav(); ?>
+                <?php kbfr_pagination_nav(); ?>
 
             <?php else : ?>
                         

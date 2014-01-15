@@ -107,15 +107,15 @@ function kbfr_plugin_options_init() {
      * General - Content Before
      */
     add_settings_field(
-            'friends_archive_page_content_before', // Unique identifier for the field for this section
-            __('Content Before Friends', 'kbfr'), // Setting field label
-            'kbfr_options_render_textarea', // Function that renders the settings field
-            'kbfr-friends', // Menu slug
-            'kbfr_friends_archive', // Settings section.
-            array( // Args to pass to render function
-                'name' => 'friends_archive_page_content_before',
-                'help_text' => __('Content to display before Friends.', 'kbfr')
-            )
+        'friends_archive_page_content_before', // Unique identifier for the field for this section
+        __('Content Before Friends', 'kbfr'), // Setting field label
+        'kbfr_options_render_textarea', // Function that renders the settings field
+        'kbfr-friends', // Menu slug
+        'kbfr_friends_archive', // Settings section.
+        array( // Args to pass to render function
+            'name' => 'friends_archive_page_content_before',
+            'help_text' => __('Content to display before Friends.', 'kbfr')
+        )
     );
 
 }
@@ -257,7 +257,7 @@ function kbfr_options_render_visual_style_dropdown( $args ) {
  */
 function kbfr_options_render_textarea( $args ) {
     
-    $options = kbcl_get_plugin_options();
+    $options = kbfr_get_plugin_options();
     
     $name = esc_attr( $args['name'] );
     
@@ -328,7 +328,7 @@ function kbfr_plugin_options_validate( $input ) {
     }
     
     // Flush Rules to ensure slug is correct
-    kbcl_flush_rewrite_rules();
+    kbfr_flush_rewrite_rules();
     
     // Combine Inputs with currently Saved data, for multiple option page compability
     $options = wp_parse_args( $input, $options );

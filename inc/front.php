@@ -42,7 +42,7 @@ function kbfr_friends_template_redirect( $template ) {
         // Use the Plugin Files
         else {
 
-            $template = KBCL_PATH . 'templates/archive-kbfr_friends.php';
+            $template = KBFR_PATH . 'templates/archive-kbfr_friends.php';
 
         }
 
@@ -65,7 +65,7 @@ function kbfr_friends_template_redirect( $template ) {
         // Use the Plugin Files
         else {
                 
-            $template = KBCL_PATH . 'templates/single-kbfr_friends.php';
+            $template = KBFR_PATH . 'templates/single-kbfr_friends.php';
                 
        }
 

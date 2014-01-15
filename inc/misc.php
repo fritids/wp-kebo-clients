@@ -12,7 +12,7 @@ if ( ! defined( 'KBFR_VERSION' ) ) {
  * Flush Rewrite Rules.
  * Use if slug changes or plugin is installed/uninstalled.
  */
-function kbcl_flush_rewrite_rules() {
+function kbfr_flush_rewrite_rules() {
     
     if ( function_exists( 'flush_rewrite_rules' ) ) {
         
