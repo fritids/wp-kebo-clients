@@ -9,7 +9,7 @@ get_header();
 
 <div class="kcontainer" style="overflow: hidden;">
 
-    <div class="kclients">
+    <div class="kfriends">
         
             <?php if ( kbcl_get_page_title() ) { ?>
                 <h2 class="page-title">
@@ -23,7 +23,7 @@ get_header();
 
             <?php if ( have_posts() ) : ?>
 
-                <div class="kclients">
+                <div class="kfriends">
                     
                     <ul class="small-kebo-grid-4 medium-kebo-grid-6 large-kebo-grid-8">
 
@@ -55,7 +55,7 @@ get_header();
                         
                     </ul>
                         
-                </div><!-- .kclients -->
+                </div><!-- .kfriends -->
                 
                 <?php kbcl_pagination_nav(); ?>
 
@@ -63,15 +63,15 @@ get_header();
                         
                 <?php
                 global $wp_post_types;
-                $cpt = $wp_post_types['kbcl_clients'];
+                $cpt = $wp_post_types['kbfr_friends'];
                 ?>
                 <?php if ( current_user_can( 'publish_posts' ) ) : ?>
 
-                    <p><?php printf( __('Ready to create your first %2$s? <a href="%1$s">Get started here</a>.', 'kbcl'), admin_url( 'post-new.php?post_type=kbcl_clients' ), $cpt->labels->singular_name ); ?></p>
+                    <p><?php printf( __('Ready to create your first %2$s? <a href="%1$s">Get started here</a>.', 'kbfr'), admin_url( 'post-new.php?post_type=kbfr_friends' ), $cpt->labels->singular_name ); ?></p>
 
                 <?php else : ?>
 
-                    <p><?php printf( __('Sorry, there are currently no %1$s to display.', 'kbcl'), $cpt->labels->name ); ?></p>
+                    <p><?php printf( __('Sorry, there are currently no %1$s to display.', 'kbfr'), $cpt->labels->name ); ?></p>
 
                 <?php endif; ?>
 
@@ -79,6 +79,6 @@ get_header();
 
     </div><!-- .kcontainer -->
     
-</div><!-- .ktestimonials -->
+</div><!-- .kfriends -->
 
 <?php get_footer(); ?>
