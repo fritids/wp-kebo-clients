@@ -31,27 +31,27 @@ if ( is_multisite() ) {
         switch_to_blog( $blog->blog_id );
 
         // Delete the Option we registered.
-        delete_option( 'kbcl_plugin_options' );
+        delete_option( 'kbfr_plugin_options' );
 
         // Delete all Posts with our Custom Post Type
         $args = array(
-            'post_type' => 'kbcl_clients',
+            'post_type' => 'kbfr_friends',
             'post_status' => 'any',
             'posts_per_page' => -1,
         );
 
         // Query for posts
-        $kbcl_posts = new WP_Query( $args );
+        $kbfr_posts = new WP_Query( $args );
 
-        if ( ! isset( $kbcl_posts ) || ! is_object( $kbcl_posts->posts ) ) {
+        if ( ! isset( $kbfr_posts ) || ! is_object( $kbfr_posts->posts ) ) {
             return;
         }
 
         // Loop each post and delete
-        foreach ( $kbcl_posts->posts as $post ) {
+        foreach ( $kbfr_posts->posts as $post ) {
 
             // Ensure it is the correct post type
-            if ( 'kbcl_clients' == $post->post_type ) {
+            if ( 'kbfr_friends' == $post->post_type ) {
 
                 wp_delete_post( $post->ID, true );
 
@@ -67,27 +67,27 @@ if ( is_multisite() ) {
 } else {
 
     // Delete the Option we registered.
-    delete_option( 'kbcl_plugin_options' );
+    delete_option( 'kbfr_plugin_options' );
     
     // Delete all Posts with our Custom Post Type
     $args = array(
-	'post_type' => 'kbcl_clients',
+	'post_type' => 'kbfr_friends',
         'post_status' => 'any',
         'posts_per_page' => -1,
     );
     
     // Query for posts
-    $kbcl_posts = new WP_Query( $args );
+    $kbfr_posts = new WP_Query( $args );
     
-    if ( ! isset( $kbcl_posts ) || false != $kbcl_posts ) {
+    if ( ! isset( $kbfr_posts ) || false != $kbfr_posts ) {
         return;
     }
     
     // Loop each post and delete
-    foreach ( $kbcl_posts->posts as $post ) {
+    foreach ( $kbfr_posts->posts as $post ) {
         
         // Ensure it is the correct post type
-        if ( 'kbcl_clients' == $post->post_type ) {
+        if ( 'kbfr_friends' == $post->post_type ) {
             
             wp_delete_post( $post->ID, true );
             

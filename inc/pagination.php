@@ -3,7 +3,7 @@
  * Pagination for the Clients Archive page.
  */
 
-if ( ! defined( 'KBCL_VERSION' ) ) {
+if ( ! defined( 'KBFR_VERSION' ) ) {
     header( 'HTTP/1.0 403 Forbidden' );
     die;
 }
@@ -12,7 +12,7 @@ if ( ! defined( 'KBCL_VERSION' ) ) {
  * Display Pagination links for Archive pages.
  * Taken from the Twenty Fourteen theme
  */
-function kbcl_pagination_nav() {
+function kbfr_pagination_nav() {
     
     // Don't print empty markup if there's only one page.
     if ( $GLOBALS['wp_query']->max_num_pages < 2 ) {
@@ -42,8 +42,8 @@ function kbcl_pagination_nav() {
         'current' => $paged,
         'mid_size' => 1,
         'add_args' => array_map( 'urlencode', $query_args ),
-        'prev_text' => __( '&laquo; Previous', 'kbcl' ),
-        'next_text' => __( 'Next &raquo;', 'kbcl' ),
+        'prev_text' => __( '&laquo; Previous', 'kbfr' ),
+        'next_text' => __( 'Next &raquo;', 'kbfr' ),
     ) );
 
     if ( $links ) {
@@ -51,7 +51,7 @@ function kbcl_pagination_nav() {
     ?>
     <div class="knav" role="navigation">
         
-        <h1 class="screen-reader-text"><?php _e( 'Clients navigation', 'kbcl' ); ?></h1>
+        <h1 class="screen-reader-text"><?php _e( 'Clients navigation', 'kbfr' ); ?></h1>
         
         <div class="kpagination">
             <?php echo $links; ?>

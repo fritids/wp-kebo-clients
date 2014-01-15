@@ -3,7 +3,7 @@
  * Customisations to the Front End
  */
 
-if ( ! defined( 'KBCL_VERSION' ) ) {
+if ( ! defined( 'KBFR_VERSION' ) ) {
     header( 'HTTP/1.0 403 Forbidden' );
     die;
 }
@@ -11,12 +11,12 @@ if ( ! defined( 'KBCL_VERSION' ) ) {
 /*
  * Tells WordPress which template file to use
  */
-function kbcl_clients_template_redirect( $template ) {
+function kbfr_friends_template_redirect( $template ) {
 
     $post_type = get_query_var( 'post_type' );
     
     // Check Post Type
-    if ( empty( $post_type ) || 'kbcl_clients' != $post_type ) {
+    if ( empty( $post_type ) || 'kbfr_friends' != $post_type ) {
         return $template;
     }
 
@@ -26,46 +26,46 @@ function kbcl_clients_template_redirect( $template ) {
     if ( ! is_single() ) {
 
         // Check the Child Theme
-        if ( file_exists( get_stylesheet_directory() . '/archive-kbcl_clients.php' ) ) {
+        if ( file_exists( get_stylesheet_directory() . '/archive-kbfr_friends.php' ) ) {
 
-            $template = get_stylesheet_directory() . '/archive-kbcl_clients.php';
+            $template = get_stylesheet_directory() . '/archive-kbfr_friends.php';
 
         }
 
         // Check the Parent Theme
-        elseif ( file_exists( get_template_directory() . '/archive-kbcl_clients.php' ) ) {
+        elseif ( file_exists( get_template_directory() . '/archive-kbfr_friends.php' ) ) {
 
-            $template = get_template_directory() . '/archive-kbcl_clients.php';
+            $template = get_template_directory() . '/archive-kbfr_friends.php';
 
         }
 
         // Use the Plugin Files
         else {
 
-            $template = KBCL_PATH . 'templates/archive-kbcl_clients.php';
+            $template = KBCL_PATH . 'templates/archive-kbfr_friends.php';
 
         }
 
     } else {
 
         // Check the Child Theme
-        if ( file_exists( get_stylesheet_directory() . '/single-kbcl_clients.php' ) ) {
+        if ( file_exists( get_stylesheet_directory() . '/single-kbfr_friends.php' ) ) {
                 
-            $template = get_stylesheet_directory() . '/single-kbcl_clients.php';
+            $template = get_stylesheet_directory() . '/single-kbfr_friends.php';
                 
         }
             
         // Check the Parent Theme
-        elseif ( file_exists( get_template_directory() . '/single-kbcl_clients.php' ) ) {
+        elseif ( file_exists( get_template_directory() . '/single-kbfr_friends.php' ) ) {
                 
-            $template = get_template_directory() . '/single-kbcl_clients.php';
+            $template = get_template_directory() . '/single-kbfr_friends.php';
                 
         }
             
         // Use the Plugin Files
         else {
                 
-            $template = KBCL_PATH . 'templates/single-kbcl_clients.php';
+            $template = KBCL_PATH . 'templates/single-kbfr_friends.php';
                 
        }
 
@@ -74,12 +74,12 @@ function kbcl_clients_template_redirect( $template ) {
     return $template;
     
 }
-add_filter( 'template_include', 'kbcl_clients_template_redirect' );
+add_filter( 'template_include', 'kbfr_friends_template_redirect' );
 
 /**
  * Testimonial Archive Query.
  */
-function kbcl_clients_archive_query( $query ) {
+function kbfr_friends_archive_query( $query ) {
 
     // Is admin or not main query
     if ( is_admin() || ! $query->is_main_query() ) {
@@ -89,18 +89,18 @@ function kbcl_clients_archive_query( $query ) {
     // Set Clients per Page as per user option
     if ( isset( $query->query_vars['post_type'] ) && ( 'kbcl_clients' == $query->query_vars['post_type'] ) ) {
 
-        $options = kbcl_get_plugin_options();
+        $options = kbfr_get_plugin_options();
         
         // Orders by the Menu Order attribute
         //$query->set( 'orderby', 'menu_order' );
         // Ascending order (1 first, etc).
         //$query->set( 'order', 'ASC' );
         // User Option for Posts per Page
-        $query->set( 'posts_per_archive_page', $options['clients_archive_posts_per_page'] );
+        $query->set( 'posts_per_archive_page', $options['friends_archive_posts_per_page'] );
         
     }
     
     return;
 
 }
-add_filter( 'pre_get_posts', 'kbcl_clients_archive_query', 1 );
+add_filter( 'pre_get_posts', 'kbfr_friends_archive_query', 1 );

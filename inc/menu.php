@@ -3,7 +3,7 @@
  * Settings Menu Page
  */
 
-if ( ! defined( 'KBCL_VERSION' ) ) {
+if ( ! defined( 'KBFR_VERSION' ) ) {
     header( 'HTTP/1.0 403 Forbidden' );
     die;
 }
@@ -11,37 +11,37 @@ if ( ! defined( 'KBCL_VERSION' ) ) {
 /*
  * Register plugin settings page inside the Settings menu.
  */
-function kbcl_clients_settings_page() {
+function kbfr_friends_settings_page() {
 
     add_submenu_page(
-            'edit.php?post_type=kbcl_clients', // Parent
-            __('Settings', 'kbcl'), // Page Title
-            __('Settings', 'kbcl'), // Menu Title
+            'edit.php?post_type=kbfr_friends', // Parent
+            __('Settings', 'kbfr'), // Page Title
+            __('Settings', 'kbfr'), // Menu Title
             'manage_options', // Capability
-            'kbcl-clients', // Menu Slug
-            'kbcl_clients_settings_page_render' // Render Function
+            'kbfr-friends', // Menu Slug
+            'kbfr_friends_settings_page_render' // Render Function
     );
 
 }
-add_action('admin_menu', 'kbcl_clients_settings_page');
+add_action('admin_menu', 'kbfr_friends_settings_page');
 
 
 /**
  * Renders the Twitter Feed Options page.
  */
-function kbcl_clients_settings_page_render() {
+function kbfr_friends_settings_page_render() {
     
     ?>
     <div class="wrap">
         
         <?php screen_icon('options-general'); ?>
-        <h2><?php _e('Clients - Settings', 'kbcl'); ?></h2>
-        <?php settings_errors( 'kbcl-clients' ); ?>
+        <h2><?php _e('Friends - Settings', 'kbfr'); ?></h2>
+        <?php settings_errors( 'kbfr-friends' ); ?>
 
         <form method="post" action="options.php">
             <?php
-            settings_fields('kbcl_options');
-            do_settings_sections('kbcl-clients');
+            settings_fields('kbfr_options');
+            do_settings_sections('kbfr-friends');
             submit_button();
             ?>
         </form>

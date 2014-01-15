@@ -3,7 +3,7 @@
  * Registers the Clients Custom Post Type
  */
 
-if ( ! defined( 'KBCL_VERSION' ) ) {
+if ( ! defined( 'KBFR_VERSION' ) ) {
     header( 'HTTP/1.0 403 Forbidden' );
     die;
 }
@@ -11,30 +11,30 @@ if ( ! defined( 'KBCL_VERSION' ) ) {
 /*
  * Register the Clients CPT (Custom Post Type)
  */
-function kbcl_create_clients_cpt() {
+function kbfr_create_friends_cpt() {
     
-    $options = kbcl_get_plugin_options();
+    $options = kbfr_get_plugin_options();
     
     /*
      * Set the Labels to be used for the CPT
      */
     $labels = array(
-        'name' => __('Clients', 'kbcl'),
-        'menu_name' => __('Clients', 'kbcl'),
-        'singular_name' => __('Client', 'kbcl'),
-        'all_items' => __('All Clients', 'kbcl'),
-        'add_new' => _x('Add New', 'kbcl'),
-        'add_new_item' => __('Add New Client', 'kbcl'),
-        'edit' => __('Edit', 'kbcl'),
-        'edit_item' => __('Edit Client', 'kbcl'),
-        'new_item' => __('New Client', 'kbcl'),
-        'view' => __('View', 'kbcl'),
-        'view_item' => __('View Client', 'kbcl'),
-        'search_items' => __('Search Clients', 'kbcl'),
-        'not_found' => __('No Clients Found', 'kbcl'),
-        'not_found_in_trash' => __('No Clients Found in Trash', 'kbcl'),
-        'parent' => __('Parent Client', 'kbcl'),
-        'parent_item_colon' => __('Client:', 'kbcl')
+        'name' => __('Friends', 'kbfr'),
+        'menu_name' => __('Friends', 'kbfr'),
+        'singular_name' => __('Friend', 'kbfr'),
+        'all_items' => __('All Friends', 'kbfr'),
+        'add_new' => _x('Add New', 'kbfr'),
+        'add_new_item' => __('Add New Friend', 'kbfr'),
+        'edit' => __('Edit', 'kbfr'),
+        'edit_item' => __('Edit Friend', 'kbfr'),
+        'new_item' => __('New Friend', 'kbfr'),
+        'view' => __('View', 'kbfr'),
+        'view_item' => __('View Friend', 'kbfr'),
+        'search_items' => __('Search Friends', 'kbfr'),
+        'not_found' => __('No Friends Found', 'kbfr'),
+        'not_found_in_trash' => __('No Friends Found in Trash', 'kbfr'),
+        'parent' => __('Parent Friend', 'kbfr'),
+        'parent_item_colon' => __('Friend:', 'kbfr')
     );
     
     /*
@@ -42,7 +42,7 @@ function kbcl_create_clients_cpt() {
      */
     $args = array(
         'labels' => $labels,
-        'description' => __('Clients', 'kbcl'),
+        'description' => __('Friends', 'kbfr'),
         'public' => true,
         'exclude_from_search' => true,
         'publicly_queryable' => true,
@@ -58,7 +58,7 @@ function kbcl_create_clients_cpt() {
         'taxonomies' => array(''),
         'menu_icon' => '',
         'rewrite' => array(
-            'slug' => $options['clients_archive_page_slug'], // TODO: change to dynamic $slug
+            'slug' => $options['friends_archive_page_slug'], // TODO: change to dynamic $slug
             'feeds' => true, // rss feeds
             'pages' => true, // prepares for pagination
             'with_front' => false // use url prefix like /blog etc.
@@ -68,7 +68,7 @@ function kbcl_create_clients_cpt() {
     );
 
     // Register the CPT
-    register_post_type( 'kbcl_clients', $args );
+    register_post_type( 'kbfr_friends', $args );
     
 }
-add_action( 'init', 'kbcl_create_clients_cpt', 1 );
+add_action( 'init', 'kbfr_create_friends_cpt', 1 );

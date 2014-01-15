@@ -3,7 +3,7 @@
  * Options API
  */
 
-if ( ! defined( 'KBCL_VERSION' ) ) {
+if ( ! defined( 'KBFR_VERSION' ) ) {
     header( 'HTTP/1.0 403 Forbidden' );
     die;
 }
@@ -11,39 +11,39 @@ if ( ! defined( 'KBCL_VERSION' ) ) {
 /**
  * Register the form setting for our kebo_options array.
  */
-function kbcl_plugin_options_init() {
+function kbfr_plugin_options_init() {
     
     // Get Options
-    $options = kbcl_get_plugin_options();
+    $options = kbfr_get_plugin_options();
     
     register_setting(
-            'kbcl_options', // Options group
-            'kbcl_plugin_options', // Database option
-            'kbcl_plugin_options_validate' // The sanitization callback,
+            'kbfr_options', // Options group
+            'kbfr_plugin_options', // Database option
+            'kbfr_plugin_options_validate' // The sanitization callback,
     );
 
     /**
      * Section - General
      */
     add_settings_section(
-            'kbcl_clients_general', // Unique identifier for the settings section
-            __('General', 'kbcl'), // Section title
+            'kbfr_friends_general', // Unique identifier for the settings section
+            __('General', 'kbfr'), // Section title
             '__return_false', // Section callback (we don't want anything)
-            'kbcl-clients' // Menu slug
+            'kbfr-friends' // Menu slug
     );
     
     /**
      * General - Visual Style
      */
     add_settings_field(
-            'clients_general_visual_style', // Unique identifier for the field for this section
-            __('Visual Style', 'kbcl'), // Setting field label
-            'kbcl_options_render_visual_style_dropdown', // Function that renders the settings field
-            'kbcl-clients', // Menu slug
-            'kbcl_clients_general', // Settings section.
+            'friends_general_visual_style', // Unique identifier for the field for this section
+            __('Visual Style', 'kbfr'), // Setting field label
+            'kbfr_options_render_visual_style_dropdown', // Function that renders the settings field
+            'kbfr-friends', // Menu slug
+            'kbfr_friends_general', // Settings section.
             array( // Args to pass to render function
-                'name' => 'clients_general_visual_style',
-                'help_text' => __('Set to none to prevent the default stylesheet being enqueued.', 'kbcl')
+                'name' => 'friends_general_visual_style',
+                'help_text' => __('Set to none to prevent the default stylesheet being enqueued.', 'kbfr')
             ) 
     );
     
@@ -51,24 +51,24 @@ function kbcl_plugin_options_init() {
      * Section - Archive Options
      */
     add_settings_section(
-            'kbcl_clients_archive', // Unique identifier for the settings section
-            __('Archive Page', 'kbcl'), // Section title
+            'kbfr_friends_archive', // Unique identifier for the settings section
+            __('Archive Page', 'kbfr'), // Section title
             '__return_false', // Section callback (we don't want anything)
-            'kbcl-clients' // Menu slug
+            'kbfr-friends' // Menu slug
     );
     
     /**
      * General - Page Title
      */
     add_settings_field(
-            'clients_archive_page_title', // Unique identifier for the field for this section
-            __('Page Title', 'kbcl'), // Setting field label
-            'kbcl_options_render_text_input', // Function that renders the settings field
-            'kbcl-clients', // Menu slug
-            'kbcl_clients_archive', // Settings section.
+            'friends_archive_page_title', // Unique identifier for the field for this section
+            __('Page Title', 'kbfr'), // Setting field label
+            'kbfr_options_render_text_input', // Function that renders the settings field
+            'kbfr-friends', // Menu slug
+            'kbfr_friends_archive', // Settings section.
             array( // Args to pass to render function
-                'name' => 'clients_archive_page_title',
-                'help_text' => __('Title of Clients page.', 'kbcl')
+                'name' => 'friends_archive_page_title',
+                'help_text' => __('Title of Clients page.', 'kbfr')
             )
     );
     
@@ -76,14 +76,14 @@ function kbcl_plugin_options_init() {
      * General - Page Slug
      */
     add_settings_field(
-            'clients_archive_page_slug', // Unique identifier for the field for this section
-            __('Page Slug', 'kbcl'), // Setting field label
-            'kbcl_options_render_text_input', // Function that renders the settings field
-            'kbcl-clients', // Menu slug
-            'kbcl_clients_archive', // Settings section.
+            'friends_archive_page_slug', // Unique identifier for the field for this section
+            __('Page Slug', 'kbfr'), // Setting field label
+            'kbfr_options_render_text_input', // Function that renders the settings field
+            'kbfr-friends', // Menu slug
+            'kbfr_friends_archive', // Settings section.
             array( // Args to pass to render function
-                'name' => 'clients_archive_page_slug',
-                'help_text' => __('Slug of Clients page.', 'kbcl')
+                'name' => 'friends_archive_page_slug',
+                'help_text' => __('Slug of Clients page.', 'kbfr')
             )
     );
     
@@ -91,15 +91,15 @@ function kbcl_plugin_options_init() {
      * General - Posts Per Page
      */
     add_settings_field(
-            'clients_archive_posts_per_page', // Unique identifier for the field for this section
-            __('Clients Per Page', 'kbcl'), // Setting field label
-            'kbcl_options_render_text_input', // Function that renders the settings field
-            'kbcl-clients', // Menu slug
-            'kbcl_clients_archive', // Settings section.
+            'friends_archive_posts_per_page', // Unique identifier for the field for this section
+            __('Friends Per Page', 'kbfr'), // Setting field label
+            'kbfr_options_render_text_input', // Function that renders the settings field
+            'kbfr-friends', // Menu slug
+            'kbfr_friends_archive', // Settings section.
             array( // Args to pass to render function
-                'name' => 'clients_archive_posts_per_page',
-                'label_text' => __('Must be between 1-50.', 'kbcl'),
-                'help_text' => __('Number of Clients to show per page. Set to -1 to display all on a single page.', 'kbcl')
+                'name' => 'friends_archive_posts_per_page',
+                'label_text' => __('Must be between 1-50.', 'kbfr'),
+                'help_text' => __('Number of Clients to show per page. Set to -1 to display all on a single page.', 'kbfr')
             )
     );
     
@@ -107,51 +107,51 @@ function kbcl_plugin_options_init() {
      * General - Content Before
      */
     add_settings_field(
-            'clients_archive_page_content_before', // Unique identifier for the field for this section
-            __('Content Before Clients', 'kbcl'), // Setting field label
-            'kbcl_options_render_textarea', // Function that renders the settings field
-            'kbcl-clients', // Menu slug
-            'kbcl_clients_archive', // Settings section.
+            'friends_archive_page_content_before', // Unique identifier for the field for this section
+            __('Content Before Friends', 'kbfr'), // Setting field label
+            'kbfr_options_render_textarea', // Function that renders the settings field
+            'kbfr-friends', // Menu slug
+            'kbfr_friends_archive', // Settings section.
             array( // Args to pass to render function
-                'name' => 'clients_archive_page_content_before',
-                'help_text' => __('Content to display before Clients', 'kbcl')
+                'name' => 'friends_archive_page_content_before',
+                'help_text' => __('Content to display before Friends.', 'kbfr')
             )
     );
 
 }
-add_action( 'admin_init', 'kbcl_plugin_options_init' );
+add_action( 'admin_init', 'kbfr_plugin_options_init' );
 
 /**
  * Change the capability required to save the 'kbcl_options' options group.
  */
-function kbcl_plugin_option_capability( $capability ) {
+function kbfr_plugin_option_capability( $capability ) {
     
     return 'manage_options';
     
 }
-add_filter( 'option_page_capability_kbcl_options', 'kbcl_plugin_option_capability' );
+add_filter( 'option_page_capability_kbfr_options', 'kbfr_plugin_option_capability' );
 
 /**
  * Returns the options array for kebo.
  */
-function kbcl_get_plugin_options() {
+function kbfr_get_plugin_options() {
     
-    $saved = (array) get_option( 'kbcl_plugin_options' );
+    $saved = (array) get_option( 'kbfr_plugin_options' );
     
     $defaults = array(
         
         // Section - Clients - General
-        'clients_general_visual_style' => 'default',
+        'friends_general_visual_style' => 'default',
         
         // Section - Archive - General
-        'clients_archive_page_title' => __('Clients', 'kbcl'),
-        'clients_archive_page_slug' => __('clients', 'kbcl'),
-        'clients_archive_posts_per_page' => 10,
-        'clients_archive_page_content_before' => null
+        'friends_archive_page_title' => __('Friends', 'kbfr'),
+        'friends_archive_page_slug' => __('friends', 'kbfr'),
+        'friends_archive_posts_per_page' => 10,
+        'friends_archive_page_content_before' => null
         
     );
 
-    $defaults = apply_filters( 'kbcl_get_plugin_options', $defaults );
+    $defaults = apply_filters( 'kbfr_get_plugin_options', $defaults );
 
     $options = wp_parse_args( $saved, $defaults );
     $options = array_intersect_key( $options, $defaults );
@@ -163,9 +163,9 @@ function kbcl_get_plugin_options() {
 /**
  * Renders the text input setting field.
  */
-function kbcl_options_render_text_input( $args ) {
+function kbfr_options_render_text_input( $args ) {
     
-    $options = kbcl_get_plugin_options();
+    $options = kbfr_get_plugin_options();
     
     $name = esc_attr( $args['name'] );
     
@@ -175,7 +175,7 @@ function kbcl_options_render_text_input( $args ) {
         
     ?>
     <label class="description" for="<?php echo $name; ?>">
-        <input type="text" name="kbcl_plugin_options[<?php echo $name; ?>]" id="<?php echo $name; ?>" value="<?php echo esc_attr( $options[ $name ] ); ?>" />
+        <input type="text" name="kbfr_plugin_options[<?php echo $name; ?>]" id="<?php echo $name; ?>" value="<?php echo esc_attr( $options[ $name ] ); ?>" />
         <?php echo $label_text; ?>
     </label>
     <?php if ( $help_text ) { ?>
@@ -188,56 +188,56 @@ function kbcl_options_render_text_input( $args ) {
 /**
  * Returns an array of radio options for Yes/No.
  */
-function kbcl_options_radio_buttons_boolean() {
+function kbfr_options_radio_buttons_boolean() {
     
     $radio_buttons = array(
         'yes' => array(
             'value' => 'yes',
-            'label' => __('On', 'kbso')
+            'label' => __('On', 'kbfr')
         ),
         'no' => array(
             'value' => 'no',
-            'label' => __('Off', 'kbso')
+            'label' => __('Off', 'kbfr')
         ),
     );
 
-    return apply_filters( 'kbcl_options_radio_buttons_boolean', $radio_buttons );
+    return apply_filters( 'kbfr_options_radio_buttons_boolean', $radio_buttons );
     
 }
 
 /**
  * Returns an array of select inputs for the Visual Style dropdown.
  */
-function kbcl_options_visual_style_dropdown() {
+function kbfr_options_visual_style_dropdown() {
     
     $dropdown = array(
         'default' => array(
             'value' => 'default',
-            'label' => __('Default', 'kbcl')
+            'label' => __('Default', 'kbfr')
         ),
         'none' => array(
             'value' => 'none',
-            'label' => __('None', 'kbcl')
+            'label' => __('None', 'kbfr')
         ),
     );
 
-    return apply_filters( 'kbcl_options_visual_style_dropdown', $dropdown );
+    return apply_filters( 'kbfr_options_visual_style_dropdown', $dropdown );
     
 }
 
 /**
  * Renders the Theme dropdown.
  */
-function kbcl_options_render_visual_style_dropdown( $args ) {
+function kbfr_options_render_visual_style_dropdown( $args ) {
     
-    $options = kbcl_get_plugin_options();
+    $options = kbfr_get_plugin_options();
     
     $name = esc_attr( $args['name'] );
     
     ?>
-    <select id="<?php echo $name; ?>[<?php echo $dropdown['value']; ?>]" name="kbcl_plugin_options[<?php echo $name; ?>]">
+    <select id="<?php echo $name; ?>[<?php echo $dropdown['value']; ?>]" name="kbfr_plugin_options[<?php echo $name; ?>]">
     <?php
-    foreach ( kbcl_options_visual_style_dropdown() as $dropdown ) {
+    foreach ( kbfr_options_visual_style_dropdown() as $dropdown ) {
         
         ?>
         <option value="<?php echo esc_attr( $dropdown['value'] ); ?>" <?php selected( $dropdown['value'], $options[ $name ] ); ?>>
@@ -255,7 +255,7 @@ function kbcl_options_render_visual_style_dropdown( $args ) {
 /**
  * Renders a textarea field.
  */
-function kbcl_options_render_textarea( $args ) {
+function kbfr_options_render_textarea( $args ) {
     
     $options = kbcl_get_plugin_options();
     
@@ -266,13 +266,13 @@ function kbcl_options_render_textarea( $args ) {
     $args = array(
         'wpautop' => true, // Use of wpautop for this data.
         'media_buttons' => false, // Show/Hide the Media Button
-        'textarea_name' => 'kbcl_plugin_options[' . $name . ']', // name attribute of the textarea
+        'textarea_name' => 'kbfr_plugin_options[' . $name . ']', // name attribute of the textarea
         'tabindex' => 'none', // Tab Index for this Element 
     );
     ?>
         
     <div style="max-width: 800px;">
-        <?php wp_editor( esc_textarea( $options[ $name ] ), 'kbcl_plugin_options[' . $name . ']', $args ); ?>
+        <?php wp_editor( esc_textarea( $options[ $name ] ), 'kbfr_plugin_options[' . $name . ']', $args ); ?>
     </div>
         
     <?php if ( $help_text ) { ?>
@@ -286,45 +286,45 @@ function kbcl_options_render_textarea( $args ) {
 /**
  * Sanitize and validate form input. Accepts an array, return a sanitized array.
  */
-function kbcl_plugin_options_validate( $input ) {
+function kbfr_plugin_options_validate( $input ) {
     
-    $options = kbcl_get_plugin_options();
+    $options = kbfr_get_plugin_options();
     
     $output = array();
     
     // General Section
-    if ( isset( $input['clients_general_visual_style'] ) && array_key_exists( $input['clients_general_visual_style'], kbcl_options_visual_style_dropdown() ) ) {
-        $output['clients_general_visual_style'] = $input['clients_general_visual_style'];
+    if ( isset( $input['friends_general_visual_style'] ) && array_key_exists( $input['friends_general_visual_style'], kbfr_options_visual_style_dropdown() ) ) {
+        $output['friends_general_visual_style'] = $input['friends_general_visual_style'];
     }
     
     // Archive Section
-    if ( isset( $input['clients_archive_page_title'] ) && ! empty( $input['clients_archive_page_title'] ) ) {
-	$output['clients_archive_page_title'] = sanitize_title( $input['clients_archive_page_title'] );
+    if ( isset( $input['friends_archive_page_title'] ) && ! empty( $input['friends_archive_page_title'] ) ) {
+	$output['friends_archive_page_title'] = sanitize_title( $input['friends_archive_page_title'] );
     }
     
-    if ( isset( $input['clients_archive_page_slug'] ) && ! empty( $input['clients_archive_page_slug'] ) ) {
-	$output['clients_archive_page_slug'] = wp_unique_post_slug( $input['clients_archive_page_slug'] );
+    if ( isset( $input['friends_archive_page_slug'] ) && ! empty( $input['friends_archive_page_slug'] ) ) {
+	$output['friends_archive_page_slug'] = wp_unique_post_slug( $input['friends_archive_page_slug'] );
     }
     
-    if ( isset( $input['clients_archive_posts_per_page'] ) && is_numeric( $input['clients_archive_posts_per_page'] ) ) {
+    if ( isset( $input['friends_archive_posts_per_page'] ) && is_numeric( $input['friends_archive_posts_per_page'] ) ) {
 
         // If 'count' is above 50 reset to 50.
-        if ( 50 <= intval( $input['clients_archive_posts_per_page'] ) ) {
-            $input['clients_archive_posts_per_page'] = 50;
+        if ( 50 <= intval( $input['friends_archive_posts_per_page'] ) ) {
+            $input['friends_archive_posts_per_page'] = 50;
         }
 
         // If 'count' is below 1 reset to 1.
-        if ( 1 >= intval( $input['clients_archive_posts_per_page'] ) && -1 != intval( $input['clients_archive_posts_per_page'] ) ) {
-            $input['clients_archive_posts_per_page'] = 10;
+        if ( 1 >= intval( $input['friends_archive_posts_per_page'] ) && -1 != intval( $input['friends_archive_posts_per_page'] ) ) {
+            $input['friends_archive_posts_per_page'] = 10;
         }
 
         // Update 'count' using intval to remove decimals.
-        $output['clients_archive_posts_per_page'] = intval( $input['clients_archive_posts_per_page'] );
+        $output['friends_archive_posts_per_page'] = intval( $input['friends_archive_posts_per_page'] );
         
     }
     
-    if ( isset( $input['clients_archive_page_content_before'] ) && ! empty( $input['clients_archive_page_content_before'] ) ) {
-	$output['clients_archive_page_content_before'] = wp_filter_post_kses( $input['clients_archive_page_content_before'] );
+    if ( isset( $input['friends_archive_page_content_before'] ) && ! empty( $input['friends_archive_page_content_before'] ) ) {
+	$output['friends_archive_page_content_before'] = wp_filter_post_kses( $input['friends_archive_page_content_before'] );
     }
     
     // Flush Rules to ensure slug is correct
@@ -333,6 +333,6 @@ function kbcl_plugin_options_validate( $input ) {
     // Combine Inputs with currently Saved data, for multiple option page compability
     $options = wp_parse_args( $input, $options );
     
-    return apply_filters( 'kbcl_plugin_options_validate', $options, $output );
+    return apply_filters( 'kbfr_plugin_options_validate', $options, $output );
     
 }

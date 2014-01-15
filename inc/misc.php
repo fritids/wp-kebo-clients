@@ -3,7 +3,7 @@
  * Kebo Testimonials - Misc/Helper Functions
  */
 
-if ( ! defined( 'KBCL_VERSION' ) ) {
+if ( ! defined( 'KBFR_VERSION' ) ) {
     header( 'HTTP/1.0 403 Forbidden' );
     die;
 }
@@ -27,18 +27,18 @@ function kbcl_flush_rewrite_rules() {
     }
     
 }
-add_filter( 'admin_init', 'kbcl_flush_rewrite_rules' );
-register_activation_hook( __FILE__, 'kbcl_flush_rewrite_rules' );
-register_deactivation_hook( __FILE__, 'kbcl_flush_rewrite_rules' );
+add_filter( 'admin_init', 'kbfr_flush_rewrite_rules' );
+register_activation_hook( __FILE__, 'kbfr_flush_rewrite_rules' );
+register_deactivation_hook( __FILE__, 'kbfr_flush_rewrite_rules' );
 
 /*
  * Helper Function - Returns Page Title
  */
-function kbcl_get_page_title() {
+function kbfr_get_page_title() {
     
-    $options = kbcl_get_plugin_options();
+    $options = kbfr_get_plugin_options();
     
-    $title = $options['clients_archive_page_title'];
+    $title = $options['friends_archive_page_title'];
     
     return esc_html( $title );
     
@@ -47,11 +47,11 @@ function kbcl_get_page_title() {
 /*
  * Helper Function - Returns Page Content Before
  */
-function kbcl_get_page_content_before() {
+function kbfr_get_page_content_before() {
     
-    $options = kbcl_get_plugin_options();
+    $options = kbfr_get_plugin_options();
     
-    $content = $options['clients_archive_page_content_before'];
+    $content = $options['friends_archive_page_content_before'];
     
     return wp_filter_post_kses( $content );
     

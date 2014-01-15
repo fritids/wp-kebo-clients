@@ -1,8 +1,8 @@
 === Kebo Clients ===
 Contributors: PeterBooker
-Tags: clients, client, widget, custom post type
+Tags: friends, friend, widget, custom post type
 Requires at least: 3.2
-Tested up to: 3.7.1
+Tested up to: 3.8
 Stable tag: 0.5.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -13,14 +13,10 @@ The easiest way to add a Testimonial Custom Post Type to your website.
 
 Description part...
 
-= Why use Kebo Clients? =
+= Why use Kebo Friends? =
 
 * WordPress Multisite compatible.
 * Translation ready (see below for included languages).
-
-= Included Translations =
-
-* English (British) by [Peter Booker](http://peterbooker.com).
 
 = Rate Us / Feedback =
 
