@@ -87,7 +87,7 @@ function kbfr_friends_archive_query( $query ) {
     }
 
     // Set Clients per Page as per user option
-    if ( isset( $query->query_vars['post_type'] ) && ( 'kbcl_clients' == $query->query_vars['post_type'] ) ) {
+    if ( isset( $query->query_vars['post_type'] ) && ( 'kbfr_friends' == $query->query_vars['post_type'] ) ) {
 
         $options = kbfr_get_plugin_options();
         
